@@ -51,6 +51,7 @@ public class Enemy : MonoBehaviour, IDamageable
     Animator animator;
 
     private LevelDoorManager doorManager;
+    private HealthPotionSpawner potionSpawner;
     
     private void Awake()
     {
@@ -77,6 +78,7 @@ public class Enemy : MonoBehaviour, IDamageable
         currentHealth = maxHealth;
 
         doorManager = FindFirstObjectByType<LevelDoorManager>();
+        potionSpawner = FindFirstObjectByType<HealthPotionSpawner>();
     }
 
     // Método para resetear el enemigo cuando vuelve del pool
@@ -252,9 +254,13 @@ public class Enemy : MonoBehaviour, IDamageable
 
         StartCoroutine(DyingCoroutine());
 
-        doorManager.EnemyDefeated();
-
-       
+        // Notificar a ambos sistemas
+        if (doorManager != null)
+            doorManager.EnemyDefeated();
+        
+        if (potionSpawner != null)
+            potionSpawner.EnemyDefeated();
+ 
     }
 
     private IEnumerator DyingCoroutine()
