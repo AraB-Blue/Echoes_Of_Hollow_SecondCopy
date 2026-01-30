@@ -6,8 +6,7 @@ public class LevelDoorManager : MonoBehaviour
     [Header ("Puertas")]
     public Animator[] doorAnimators;
 
-    [Header("Poción de vida")]
-    public GameObject healthPotion;
+    [Header("Pociï¿½n de vida")]
     private int enemyCount;
     private bool levelCleared = false;
 
@@ -15,10 +14,6 @@ public class LevelDoorManager : MonoBehaviour
     {
         enemyCount = GameObject.FindGameObjectsWithTag("enemy").Length;
 
-        if (healthPotion !=null)
-        {
-            healthPotion.SetActive(false); //esta oculta al principio
-        }
     }
 
     public void EnemyDefeated()
@@ -43,26 +38,6 @@ public class LevelDoorManager : MonoBehaviour
         {
             anim.SetTrigger("OpenDoor");
         }
-
-        //pocion
-
-        if (healthPotion !=null)
-        {
-            StartCoroutine(spawnPotion());
-            
-        }
     }
-
-    private IEnumerator spawnPotion()
-    {
-        yield return new WaitForSeconds(2);
-        
-        healthPotion.SetActive(true);
-
-
-    }
-
-
-   
 
 }
