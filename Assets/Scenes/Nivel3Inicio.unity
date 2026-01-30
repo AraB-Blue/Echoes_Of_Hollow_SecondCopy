@@ -2408,7 +2408,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MusicManager
   audioSource: {fileID: 756911864}
   musicaNivel: {fileID: 8300000, guid: 95e846602854347428e89e5bb4ba7729, type: 3}
-  musicaJefe: {fileID: 0}
+  musicaJefe: {fileID: 8300000, guid: ad3fe54a0a9d29544bf1c887c739f6a0, type: 3}
+  escenasNivel:
+  - Nivel3Inicio
+  - Nivel3.1
+  - Nivel3.2
+  escenasJefe:
+  - Nivel3Boss
 --- !u!82 &756911864
 AudioSource:
   m_ObjectHideFlags: 0

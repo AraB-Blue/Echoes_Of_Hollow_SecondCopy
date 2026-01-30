@@ -66,5 +66,5 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj"
     },
-    "dotnet.defaultSolution": "Echoes_of_Hollow-GameJam.sln"
+    "dotnet.defaultSolution": "Echoes_Of_Hollow_SecondCopy.sln"
 }
