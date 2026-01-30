@@ -5036,7 +5036,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -9020295309892371198, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
       propertyPath: speed
-      value: 8
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -9020295309892371198, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
+      propertyPath: dashSpeed
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: -9015068739686460194, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
       propertyPath: currentHealth

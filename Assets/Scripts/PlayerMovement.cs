@@ -65,9 +65,6 @@ public class PlayerMovement : MonoBehaviour
 
     void OnEnable()
     {
-        moveAction?.Enable();
-        dashAction?.Enable();
-
         if (moveAction != null)
         {
             moveAction.performed += OnMove;
@@ -88,7 +85,10 @@ public class PlayerMovement : MonoBehaviour
             moveAction.canceled -= OnMove;
         }
 
-        dashAction?.Disable();
+        if (dashAction !=null)
+        {
+            dashAction.performed -= OnDash;
+        }
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
@@ -174,8 +174,14 @@ public class PlayerMovement : MonoBehaviour
 
     void OnDash(InputAction.CallbackContext context)
     {
-        if (context.performed && Time.time >= lastDashTime + dashCooldown && moveDirection != Vector3.zero)
+        if (context.performed && Time.time >= lastDashTime + dashCooldown)
         {
+            if (moveDirection == Vector3.zero)
+            {
+                moveDirection = transform.forward;
+            }
+
+
             isDashing = true;
             dashTime = 0f;
             lastDashTime = Time.time;
