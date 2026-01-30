@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3541195652047381415
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 6297119392edeff469b146efc8142ca2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 365.04745
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6297119392edeff469b146efc8142ca2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 365.04745
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6297119392edeff469b146efc8142ca2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 365.04745
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6297119392edeff469b146efc8142ca2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.36
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6297119392edeff469b146efc8142ca2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.59
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6297119392edeff469b146efc8142ca2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 88.83
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6297119392edeff469b146efc8142ca2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6297119392edeff469b146efc8142ca2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6297119392edeff469b146efc8142ca2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6297119392edeff469b146efc8142ca2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6297119392edeff469b146efc8142ca2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6297119392edeff469b146efc8142ca2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6297119392edeff469b146efc8142ca2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 6297119392edeff469b146efc8142ca2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9a83d1364332f614bb71e5a56b3eeac3, type: 2}
+    - target: {fileID: 919132149155446097, guid: 6297119392edeff469b146efc8142ca2, type: 3}
+      propertyPath: m_Name
+      value: Pocion_de_vida
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6297119392edeff469b146efc8142ca2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7189783660236441113}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6297119392edeff469b146efc8142ca2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8343504366458228722}
+  m_SourcePrefab: {fileID: 100100000, guid: 6297119392edeff469b146efc8142ca2, type: 3}
+--- !u!1 &4460168364500459254 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6297119392edeff469b146efc8142ca2, type: 3}
+  m_PrefabInstance: {fileID: 3541195652047381415}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7189783660236441113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4460168364500459254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e921f8a1c8051f4dab3ce39b4a58a06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthPotion
+  healAmount: 20
+  destroyOnUse: 1
+--- !u!65 &8343504366458228722
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4460168364500459254}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0026044294, y: 0.0016899947, z: 0.004337467}
+  m_Center: {x: 0.000035515874, y: -0.00006496576, z: 0.001027236}
