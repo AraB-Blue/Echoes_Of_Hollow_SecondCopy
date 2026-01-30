@@ -340,6 +340,8 @@ MonoBehaviour:
   healthPotionPrefab: {fileID: 4460168364500459254, guid: 307e74a8c08006c44a34cec90607b12d, type: 3}
   spawnPosition: {fileID: 1466666684}
   spawnOnAllEnemiesDead: 1
+  useCustomRotation: 1
+  spawnRotation: {x: -90, y: 0, z: 0}
 --- !u!4 &2312376
 Transform:
   m_ObjectHideFlags: 0
