@@ -4686,12 +4686,12 @@ MonoBehaviour:
   TransparentLayers:
     serializedVersion: 2
     m_Bits: 0
-  MinimumDistanceFromTarget: 1.94
+  MinimumDistanceFromTarget: 2.39
   AvoidObstacles:
     Enabled: 1
-    DistanceLimit: 4.44
-    MinimumOcclusionTime: 0.11
-    CameraRadius: 1.38
+    DistanceLimit: 1.74
+    MinimumOcclusionTime: 1.1
+    CameraRadius: 4.03
     UseFollowTarget:
       Enabled: 0
       YOffset: 0
@@ -4719,7 +4719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineRotationComposer
   Composition:
-    ScreenPosition: {x: 0, y: 0}
+    ScreenPosition: {x: 0, y: -0.003696859}
     DeadZone:
       Enabled: 0
       Size: {x: 0.2, y: 0.2}
@@ -4728,7 +4728,7 @@ MonoBehaviour:
       Size: {x: 0.8, y: 0.8}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
-  TargetOffset: {x: 0, y: 0, z: 0}
+  TargetOffset: {x: 0, y: 1.35, z: 0}
   Damping: {x: 0.5, y: 0.5}
   Lookahead:
     Enabled: 0
