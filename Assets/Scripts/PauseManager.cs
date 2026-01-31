@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PauseManager : MonoBehaviour
 {
@@ -80,6 +81,35 @@ public class PauseManager : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+    }
+
+    public void ReturnToMainMenu()
+    {
+        StartCoroutine(ReturnToMenuRoutine());
+    }
+
+    private IEnumerator ReturnToMenuRoutine()
+    {
+        Time.timeScale = 1f;
+        isPaused = false;
+
+        DestroyPersistentObjects();
+
+        SceneManager.LoadScene("Menu");
+
+        yield return null;
+    }
+
+    private void DestroyPersistentObjects()
+    {
+        PlayerHealth.ResetPlayer();
+        MusicManager.ResetMusic();
+        
+        if (Instance == this)
+        {
+            Instance = null;
+        }
+        Destroy(gameObject);
     }
 
     public void QuitGame()

@@ -150,4 +150,13 @@ public class PlayerHealth : MonoBehaviour
             Gizmos.DrawWireSphere(transform.position + Vector3.up * 2f, 0.5f);
         }
     }
+
+    public static void ResetPlayer()
+    {
+        if (instance !=null)
+        {
+            Destroy(instance.gameObject);
+            instance = null;
+        }
+    }
 }

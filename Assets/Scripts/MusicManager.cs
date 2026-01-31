@@ -11,10 +11,10 @@ public class MusicManager : MonoBehaviour
     public AudioClip musicaNivel;
     public AudioClip musicaJefe;
 
-    // Escenas que usan música de nivel
+    // Escenas que usan mï¿½sica de nivel
     public List<string> escenasNivel;
 
-    // Escenas que usan música de jefe
+    // Escenas que usan mï¿½sica de jefe
     public List<string> escenasJefe;
 
     void Awake()
@@ -47,11 +47,26 @@ public class MusicManager : MonoBehaviour
 
     public void CambiarMusica(AudioClip nuevaMusica)
     {
-        // Si ya está sonando esa música, NO reiniciar
+        // Si ya estï¿½ sonando esa mï¿½sica, NO reiniciar
         if (audioSource.clip == nuevaMusica && audioSource.isPlaying)
             return;
 
         audioSource.clip = nuevaMusica;
         audioSource.Play();
+    }
+
+    public static void ResetMusic()
+    {
+        if (instance != null)
+        {
+            instance.audioSource.Stop();
+            Destroy(instance.gameObject);
+            instance = null;
+        }
+    }
+
+    void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

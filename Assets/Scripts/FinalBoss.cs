@@ -153,7 +153,7 @@ public class FinalBoss : MonoBehaviour, IDamageable
     // Ataque 1 - Ataque normal
     private IEnumerator ExecuteAttack1()
     {
-        Debug.Log("¡Jefe usa ataque normal!");
+        Debug.Log("ï¿½Jefe usa ataque normal!");
 
         if(animator != null)
         {
@@ -168,7 +168,7 @@ public class FinalBoss : MonoBehaviour, IDamageable
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(attack1Damage);
-                Debug.Log("Ataque 1 conectado - Daño: " + attack1Damage);
+                Debug.Log("Ataque 1 conectado - Daï¿½o: " + attack1Damage);
             }
         }
 
@@ -181,7 +181,7 @@ public class FinalBoss : MonoBehaviour, IDamageable
     // Ataque 2 - Ataque especial poderoso
     private IEnumerator ExecuteAttack2()
     {
-        Debug.Log("¡Jefe usa ataque especial!");
+        Debug.Log("ï¿½Jefe usa ataque especial!");
 
         if (animator !=null)
         {
@@ -196,7 +196,7 @@ public class FinalBoss : MonoBehaviour, IDamageable
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(attack2Damage);
-                Debug.Log("Ataque 2 conectado - Daño: " + attack2Damage);
+                Debug.Log("Ataque 2 conectado - Daï¿½o: " + attack2Damage);
             }
         }
 
@@ -210,7 +210,7 @@ public class FinalBoss : MonoBehaviour, IDamageable
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
-        Debug.Log(gameObject.name + "recibio" + amount + "de daño. Vida restante" + currentHealth);
+        Debug.Log(gameObject.name + "recibio" + amount + "de daï¿½o. Vida restante" + currentHealth);
 
         if (currentHealth <= 0)
             Die();
@@ -239,20 +239,42 @@ public class FinalBoss : MonoBehaviour, IDamageable
 
         yield return new WaitForSeconds(timeBeforeDying);
 
-        if (CameraPersist.instance !=null)
+        CleanupPersistenObjects();
+
+        SceneManager.LoadScene("CinemFinal");
+    }
+
+    private void CleanupPersistenObjects()
+    {
+        if (CameraPersist.instance != null)
         {
             CameraPersist.instance.ResetCamera();
         }
 
-        Destroy(gameObject);
-
-        if (player !=null)
+        if (player != null)
         {
             Destroy(player.gameObject);
-            Debug.Log("Jugador destruido");
         }
 
-        SceneManager.LoadScene("CinemFinal");
+        if (PlayerHealth.instance != null)
+        {
+            Destroy (PauseManager.Instance.gameObject);
+            PauseManager.Instance = null;
+        }
+       //si se borra algo, que sea desde aqui
+        if (PauseManager.Instance != null)
+        {
+            Destroy(PauseManager.Instance.gameObject);
+            PauseManager.Instance = null;
+        }
+
+        MusicManager.ResetMusic();
+
+        Time.timeScale = 1f;
+
+        Destroy(gameObject);
+
+
     }
 
     // Visualizar rangos en el editor

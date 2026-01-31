@@ -634,7 +634,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1965431282}
-  - component: {fileID: 1965431281}
+  - component: {fileID: 1965431283}
   m_Layer: 0
   m_Name: VideoHandler
   m_TagString: Untagged
@@ -642,21 +642,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1965431281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1965431280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66315c41eb10af34ca41946a6bef3c98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AnimAlter
-  videoPlayer: {fileID: 1282645494}
-  menuSceneName: menu
-  allowSkipWithSpace: 1
 --- !u!4 &1965431282
 Transform:
   m_ObjectHideFlags: 0
@@ -672,6 +657,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1965431283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965431280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6494be7595247f842a1510e846309f6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimFinal
+  videoPlayer: {fileID: 1282645494}
+  menuSceneName: Menu
+  skipWithEscape: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
