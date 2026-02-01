@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 05be2345229757f42853a7790ef85478, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d2ffd38f434623049b2e03229cd6ad99, type: 2}
     - target: {fileID: 919132149155446097, guid: 05be2345229757f42853a7790ef85478, type: 3}
       propertyPath: m_Name
       value: Zanahoria

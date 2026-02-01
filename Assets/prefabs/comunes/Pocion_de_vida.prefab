@@ -63,7 +63,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 6297119392edeff469b146efc8142ca2, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 9a83d1364332f614bb71e5a56b3eeac3, type: 2}
+      objectReference: {fileID: 2100000, guid: 51609749884ffaa40963d4b5a2e67d7a, type: 2}
     - target: {fileID: 919132149155446097, guid: 6297119392edeff469b146efc8142ca2, type: 3}
       propertyPath: m_Name
       value: Pocion_de_vida

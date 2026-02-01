@@ -63,7 +63,15 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 0929010349b4bf645a0338a2d9cb0ba8, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 9a83d1364332f614bb71e5a56b3eeac3, type: 2}
+      objectReference: {fileID: 2100000, guid: 10fe08f556fdf5d42a012cec3274e97a, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 0929010349b4bf645a0338a2d9cb0ba8, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 10fe08f556fdf5d42a012cec3274e97a, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 0929010349b4bf645a0338a2d9cb0ba8, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 10fe08f556fdf5d42a012cec3274e97a, type: 2}
     - target: {fileID: 919132149155446097, guid: 0929010349b4bf645a0338a2d9cb0ba8, type: 3}
       propertyPath: m_Name
       value: base piedra (armadura)

@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: a1c28bdf84f92794c98f0e33af4392fd, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f2375889a56388d45a79102ee0e1e5ce, type: 2}
     - target: {fileID: 919132149155446097, guid: a1c28bdf84f92794c98f0e33af4392fd, type: 3}
       propertyPath: m_Name
       value: Red_pescar

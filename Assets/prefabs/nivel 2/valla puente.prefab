@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 14de4617fb862484ba77ffa5f2ab716a, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 9a83d1364332f614bb71e5a56b3eeac3, type: 2}
+      objectReference: {fileID: 2100000, guid: 43c83f65f85649f44b7608e9f0b7ed29, type: 2}
     - target: {fileID: 919132149155446097, guid: 14de4617fb862484ba77ffa5f2ab716a, type: 3}
       propertyPath: m_Name
       value: valla puente

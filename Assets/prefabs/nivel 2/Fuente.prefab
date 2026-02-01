@@ -60,10 +60,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -678588488315902003, guid: f9ce527e3e11a4c4888cea9ae305d97d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 5e6b51079ee79df478b1f48fe0a5a096, type: 2}
     - target: {fileID: 919132149155446097, guid: f9ce527e3e11a4c4888cea9ae305d97d, type: 3}
       propertyPath: m_Name
       value: Fuente
       objectReference: {fileID: 0}
+    - target: {fileID: 1613343416435352025, guid: f9ce527e3e11a4c4888cea9ae305d97d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 5e6b51079ee79df478b1f48fe0a5a096, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

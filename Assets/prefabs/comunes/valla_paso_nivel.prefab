@@ -60,6 +60,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7662290698988881492, guid: 82d0bdab1e4dbcc4ab9780278da44d3d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: efb8f7e9766dfa046a0780dfbb762d8a, type: 2}
+    - target: {fileID: -1438648021903250601, guid: 82d0bdab1e4dbcc4ab9780278da44d3d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: efb8f7e9766dfa046a0780dfbb762d8a, type: 2}
     - target: {fileID: 919132149155446097, guid: 82d0bdab1e4dbcc4ab9780278da44d3d, type: 3}
       propertyPath: m_Name
       value: valla_paso_nivel

@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 5f182ad415a98bf47ab729821ced3e21, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 9a83d1364332f614bb71e5a56b3eeac3, type: 2}
+      objectReference: {fileID: 2100000, guid: 6e52b8a32b1cd5a4ba0643802d882584, type: 2}
     - target: {fileID: 919132149155446097, guid: 5f182ad415a98bf47ab729821ced3e21, type: 3}
       propertyPath: m_Name
       value: Estandarte

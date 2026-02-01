@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TIENDA2UV
       objectReference: {fileID: 0}
+    - target: {fileID: 8689899495213585746, guid: c8aee6083af113d4194f29c5feba3386, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b08f0cfb5f6721843b920db73bd11738, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
