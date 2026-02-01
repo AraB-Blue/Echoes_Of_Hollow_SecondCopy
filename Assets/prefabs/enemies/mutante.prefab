@@ -292,7 +292,7 @@ MonoBehaviour:
   walkPointRange: 6
   minIdleTime: 7
   maxIdleTime: 9
-  idleChance: 0.4
+  idleChance: 0.1
   timeBetweenAttacks: 4.6
   damageAmount: 30
   attackDelay: 2.5
