@@ -29,13 +29,13 @@ public class PlayerAttack : MonoBehaviour
     private float lastAttackTime;
     private PlayerMovement movement;
     private Animator animator;
-    private Rigidbody rb;
+    
 
     void Start()
     {
         movement = GetComponent<PlayerMovement>();
         animator = movement.GetAnimator();
-        rb = GetComponent<Rigidbody>();
+        
         if (attackOrigin == null) attackOrigin = transform;
     }
 
@@ -68,19 +68,6 @@ public class PlayerAttack : MonoBehaviour
         if (movement != null)
             movement.canMove = false;
 
-        // SOLUCIÓN: Congelar la posición del Rigidbody durante el ataque
-        RigidbodyConstraints originalConstraints = RigidbodyConstraints.None;
-        
-        if (rb != null)
-        {
-            originalConstraints = rb.constraints;
-            // Congelar todas las posiciones durante el ataque para evitar que salga volando
-            rb.constraints = RigidbodyConstraints.FreezePositionX | 
-                            RigidbodyConstraints.FreezePositionY | 
-                            RigidbodyConstraints.FreezePositionZ | 
-                            RigidbodyConstraints.FreezeRotation;
-        }
-
         // Activar animación de ataque
         if (animator != null)
         {
@@ -105,10 +92,6 @@ public class PlayerAttack : MonoBehaviour
         // Resetear estado de ataque
         if (animator != null)
             animator.SetBool("IsAttacking", false);
-
-        // RESTAURAR constraints originales del Rigidbody
-        if (rb != null)
-            rb.constraints = originalConstraints;
 
         // Permitir movimiento nuevamente
         if (movement != null)
