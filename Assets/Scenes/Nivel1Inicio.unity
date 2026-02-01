@@ -5072,8 +5072,16 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -3988220991844789130, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
+      propertyPath: comboList.Array.data[0].angle
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: -3988220991844789130, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
       propertyPath: comboList.Array.data[0].range
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -3988220991844789130, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
+      propertyPath: comboList.Array.data[1].angle
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: -3988220991844789130, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
       propertyPath: comboList.Array.data[1].range

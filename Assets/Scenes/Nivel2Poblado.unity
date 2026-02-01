@@ -2124,7 +2124,7 @@ MonoBehaviour:
     ello"
   - "... \xBFY lo de la ropa?"
   - "Ah, eso creo que es por el hechizo que te trajo hasta aqu\xED"
-  interactAction: {fileID: 0}
+  interactAction: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!65 &352867430
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3240,7 +3240,7 @@ MonoBehaviour:
   - "No has entendido nada, \xBFverdad? \xBFNo se te ha ocurrido mejor excusa?"
   - "Yo que s\xE9 como va eso de la invocaci\xF3n que ha dicho"
   - "\xBFY que quieres que diga de excusa si no, listo?"
-  interactAction: {fileID: 0}
+  interactAction: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!65 &601923697
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6576,7 +6576,7 @@ Transform:
   m_GameObject: {fileID: 1342964908}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.17207, y: 1.44, z: -2.598175}
+  m_LocalPosition: {x: 1.17207, y: 1.44, z: -5.34}
   m_LocalScale: {x: 40.784176, y: 2.3523, z: 0.9317931}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8749,7 +8749,7 @@ MonoBehaviour:
   dialogueWords:
   - "Vete a tu poblado, guarra. \xA1No queremos m\xE1s furcias aqu\xED!"
   - Guarra tu madre
-  interactAction: {fileID: 0}
+  interactAction: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!65 &1699229747
 BoxCollider:
   m_ObjectHideFlags: 0
