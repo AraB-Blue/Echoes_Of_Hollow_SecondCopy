@@ -2169,7 +2169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18fd2c95199768d4f81ccfd4acc965e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogoNPC2
-  dialogueCanvas: {fileID: 1772331224}
+  dialogueCanvas: {fileID: 2004393303}
   speakerText: {fileID: 1510083820}
   dialogueText: {fileID: 676068489}
   speaker:

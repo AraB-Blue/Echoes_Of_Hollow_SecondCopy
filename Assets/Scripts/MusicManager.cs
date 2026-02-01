@@ -27,7 +27,12 @@ public class MusicManager : MonoBehaviour
         }
         else
         {
+            if (musicaNivel != null)
+            {
+                instance.CambiarMusica(musicaNivel);
+            }
             Destroy(gameObject);
+            return;
         }
     }
 
@@ -47,10 +52,16 @@ public class MusicManager : MonoBehaviour
 
     public void CambiarMusica(AudioClip nuevaMusica)
     {
+        if (nuevaMusica == null)
+        {
+            return;
+        }
+        
         // Si ya est� sonando esa m�sica, NO reiniciar
         if (audioSource.clip == nuevaMusica && audioSource.isPlaying)
             return;
 
+        audioSource.Stop();
         audioSource.clip = nuevaMusica;
         audioSource.Play();
     }
