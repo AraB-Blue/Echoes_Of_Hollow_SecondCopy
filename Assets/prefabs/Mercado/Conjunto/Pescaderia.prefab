@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3147085058868592749}
+  - component: {fileID: 6089625380193713579}
   m_Layer: 0
   m_Name: Pescaderia
   m_TagString: Untagged
@@ -48,6 +49,27 @@ Transform:
   - {fileID: 6136811266528314748}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6089625380193713579
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110136139949026427}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.1208506, y: 3.6218722, z: 2.163787}
+  m_Center: {x: -5.2070804, y: 1.3109361, z: -11.569107}
 --- !u!1001 &1025306643360041478
 PrefabInstance:
   m_ObjectHideFlags: 0
