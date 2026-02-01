@@ -5072,8 +5072,12 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -3988220991844789130, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
+      propertyPath: damagePoint
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3988220991844789130, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
       propertyPath: comboList.Array.data[0].angle
-      value: 80
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: -3988220991844789130, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
       propertyPath: comboList.Array.data[0].range
@@ -5086,6 +5090,10 @@ PrefabInstance:
     - target: {fileID: -3988220991844789130, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
       propertyPath: comboList.Array.data[1].range
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -3988220991844789130, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
+      propertyPath: comboList.Array.data[2].angle
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 3244474474422751153, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
       propertyPath: m_Height
