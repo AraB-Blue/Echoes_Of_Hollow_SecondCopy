@@ -275,7 +275,7 @@ MonoBehaviour:
   patrolSoundVolume: 0.683
   attackSounds:
   - {fileID: 8300000, guid: 865dcde238a671c47a2095e1567c2b15, type: 3}
-  attackSoundVolume: 0.8
+  attackSoundVolume: 0.804
   deathSound: {fileID: 8300000, guid: 54897979df1c3ac4fb6785db48add972, type: 3}
   deathSoundVolume: 1
   agent: {fileID: 1938510453181558667}

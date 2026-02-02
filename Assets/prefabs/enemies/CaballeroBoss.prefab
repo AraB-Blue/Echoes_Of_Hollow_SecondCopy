@@ -502,6 +502,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   maxHealth: 150
+  audioSource: {fileID: 0}
+  audioMinDistance: 5
+  audioMaxDistance: 20
+  patrolSounds:
+  - {fileID: 8300000, guid: 0b59034835739bf43af0aa6870bd2f0e, type: 3}
+  minPatrolSoundInterval: 3
+  maxPatrolSoundInterval: 8
+  patrolSoundVolume: 0.5
+  attackSounds:
+  - {fileID: 8300000, guid: e1dba585f17a97c4c8adc60d12234461, type: 3}
+  attackSoundVolume: 0.8
+  deathSound: {fileID: 8300000, guid: 8ac29bbbd9eef5c49b7d18ccb495cb61, type: 3}
+  deathSoundVolume: 0.997
   agent: {fileID: 6904981233721403146}
   player: {fileID: 0}
   whatIsGround:
