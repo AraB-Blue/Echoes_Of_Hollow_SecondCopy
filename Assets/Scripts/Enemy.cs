@@ -13,6 +13,39 @@ public class Enemy : MonoBehaviour, IDamageable
     [Header("Feedback opcional")]
     //public GameObject deathEffect;
 
+    [Header("Sistema de Audio")]
+    public AudioSource audioSource;
+
+    [Tooltip("Sonidos que se reproducen aleatoriamente durante la patrulla")]
+    public AudioClip[] patrolSounds;
+
+    [Tooltip("Tiempo mínimo entre sonidos de patrulla")]
+    public float minPatrolSoundInterval = 3f;
+
+    [Tooltip("Tiempo máximo entre sonidos de patrulla")]
+    public float maxPatrolSoundInterval = 8f;
+
+    [Tooltip("Volumen de los sonidos de patrulla (0-1)")]
+    [Range(0f, 1f)]
+    public float patrolSoundVolume = 0.5f;
+
+    [Tooltip("Sonidos que se reproducen al atacar")]
+    public AudioClip[] attackSounds;
+
+    [Tooltip("Volumen de los sonidos de ataque (0-1)")]
+    [Range(0f, 1f)]
+    public float attackSoundVolume = 0.8f;
+
+    [Tooltip("Sonido que se reproduce al morir")]
+    public AudioClip deathSound;
+
+    [Tooltip("Volumen del sonido de muerte (0-1)")]
+    [Range(0f, 1f)]
+    public float deathSoundVolume = 1f;
+
+    private float nextPatrolSoundTime;
+    private bool isPatrolling;
+
     [Header("IA")]
     public NavMeshAgent agent;
     public Transform player;
@@ -65,6 +98,19 @@ public class Enemy : MonoBehaviour, IDamageable
             Debug.LogError("El Enemy necesita un NavMeshAgent. Agrega uno al GameObject.");
 
         animator = GetComponent<Animator>();
+
+        // Obtener o crear AudioSource
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+            if (audioSource == null)
+            {
+                audioSource = gameObject.AddComponent<AudioSource>();
+                audioSource.spatialBlend = 1f; // Audio 3D
+                audioSource.minDistance = 5f;
+                audioSource.maxDistance = 20f;
+            }
+        }
     }
 
     void Start()
@@ -73,6 +119,9 @@ public class Enemy : MonoBehaviour, IDamageable
 
         doorManager = FindFirstObjectByType<LevelDoorManager>();
         potionSpawner = FindFirstObjectByType<HealthPotionSpawner>();
+
+        // Inicializar timer de sonido de patrulla
+        nextPatrolSoundTime = Time.time + Random.Range(minPatrolSoundInterval, maxPatrolSoundInterval);
     }
 
     // Método para resetear el enemigo cuando vuelve del pool
@@ -82,6 +131,7 @@ public class Enemy : MonoBehaviour, IDamageable
         isDead = false;
         isAttacking = false;
         walkPointSet = false;
+        isPatrolling = false;
 
         // Detener coroutines activas
         if (attackCoroutine != null)
@@ -101,6 +151,13 @@ public class Enemy : MonoBehaviour, IDamageable
             animator.SetBool("atacar", false);
             animator.SetBool("morirse", false);
         }
+
+        // Detener audio
+        if (audioSource != null)
+            audioSource.Stop();
+
+        // Resetear timer de patrulla
+        nextPatrolSoundTime = Time.time + Random.Range(minPatrolSoundInterval, maxPatrolSoundInterval);
     }
 
     private void Update()
@@ -129,6 +186,8 @@ public class Enemy : MonoBehaviour, IDamageable
     //PATRULLA
     private void Patroling()
     {
+        isPatrolling = true;
+
         if (!walkPointSet) SearchWalkPoint();
 
         if (walkPointSet)
@@ -145,6 +204,9 @@ public class Enemy : MonoBehaviour, IDamageable
         // Animación de movimiento basada en velocidad real
         float normalizedSpeed = agent.velocity.magnitude / agent.speed;
         animator.SetFloat("moverse", normalizedSpeed);
+
+        // Reproducir sonidos de patrulla aleatoriamente
+        PlayPatrolSound();
     }
 
     private void SearchWalkPoint()
@@ -162,6 +224,7 @@ public class Enemy : MonoBehaviour, IDamageable
     //SEGUIR JUGADOR
     private void ChasePlayer()
     {
+        isPatrolling = false;
         agent.SetDestination(player.position);
 
         // Animación de movimiento basada en velocidad real
@@ -171,6 +234,8 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void AttackPlayer()
     {
+        isPatrolling = false;
+
         // El enemigo se queda quieto
         agent.isStopped = true;
         animator.SetFloat("moverse", 0f);
@@ -193,6 +258,9 @@ public class Enemy : MonoBehaviour, IDamageable
 
         // Activar animación de ataque con BOOL
         animator.SetBool("atacar", true);
+
+        // Reproducir sonido de ataque
+        PlayAttackSound();
 
         yield return new WaitForSeconds(attackDelay);
 
@@ -247,6 +315,9 @@ public class Enemy : MonoBehaviour, IDamageable
         /*if (deathEffect != null)
             Instantiate(deathEffect, transform.position, Quaternion.identity);*/
 
+        // Reproducir sonido de muerte
+        PlayDeathSound();
+
         StartCoroutine(DyingCoroutine());
 
         // Notificar a ambos sistemas
@@ -275,6 +346,59 @@ public class Enemy : MonoBehaviour, IDamageable
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    // MÉTODOS DE AUDIO
+
+    /// <summary>
+    /// Reproduce sonidos de patrulla de forma aleatoria a intervalos
+    /// </summary>
+    private void PlayPatrolSound()
+    {
+        if (patrolSounds == null || patrolSounds.Length == 0)
+            return;
+
+        if (Time.time >= nextPatrolSoundTime && !audioSource.isPlaying)
+        {
+            // Seleccionar un sonido aleatorio
+            AudioClip randomClip = patrolSounds[Random.Range(0, patrolSounds.Length)];
+
+            if (randomClip != null)
+            {
+                audioSource.PlayOneShot(randomClip, patrolSoundVolume);
+            }
+
+            // Establecer el próximo tiempo de reproducción
+            nextPatrolSoundTime = Time.time + Random.Range(minPatrolSoundInterval, maxPatrolSoundInterval);
+        }
+    }
+
+    /// <summary>
+    /// Reproduce un sonido aleatorio de ataque
+    /// </summary>
+    private void PlayAttackSound()
+    {
+        if (attackSounds == null || attackSounds.Length == 0)
+            return;
+
+        // Seleccionar un sonido aleatorio
+        AudioClip randomClip = attackSounds[Random.Range(0, attackSounds.Length)];
+
+        if (randomClip != null)
+        {
+            audioSource.PlayOneShot(randomClip, attackSoundVolume);
+        }
+    }
+
+    /// <summary>
+    /// Reproduce el sonido de muerte
+    /// </summary>
+    private void PlayDeathSound()
+    {
+        if (deathSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(deathSound, deathSoundVolume);
         }
     }
 

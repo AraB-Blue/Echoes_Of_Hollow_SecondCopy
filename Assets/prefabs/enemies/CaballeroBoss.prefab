@@ -501,7 +501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8a9fe51723bda45b3faee1601b7a38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  maxHealth: 100
+  maxHealth: 150
   agent: {fileID: 6904981233721403146}
   player: {fileID: 0}
   whatIsGround:
@@ -512,10 +512,7 @@ MonoBehaviour:
     m_Bits: 64
   walkPoint: {x: 5, y: 5, z: 5}
   walkPointRange: 5
-  minIdleTime: 2
-  maxIdleTime: 8
-  idleChance: 0.1
-  timeBetweenAttacks: 4
+  timeBetweenAttacks: 3
   damageAmount: 10
   attackDelay: 2
   sightRange: 3.54
