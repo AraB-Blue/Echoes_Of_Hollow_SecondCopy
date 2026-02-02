@@ -172,7 +172,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private void AttackPlayer()
     {
         // El enemigo se queda quieto
-        agent.SetDestination(transform.position);
+        agent.isStopped = true;
         animator.SetFloat("moverse", 0f);
 
         // Mira al jugador
@@ -209,6 +209,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
         // Desactivar animación de ataque
         animator.SetBool("atacar", false);
+        agent.isStopped = false;
 
         yield return new WaitForSeconds(timeBetweenAttacks);
 
