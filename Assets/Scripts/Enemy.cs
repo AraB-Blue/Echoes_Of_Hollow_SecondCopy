@@ -30,16 +30,11 @@ public class Enemy : MonoBehaviour, IDamageable
     private bool walkPointSet;
     public float walkPointRange;
 
-    //pausa patrulla
-    private bool isIdling = false;
-    public float minIdleTime = 2f;
-    public float maxIdleTime = 5f;
-    public float idleChance = 0.4f;
-
     // Ataque
     public float timeBetweenAttacks = 8f;
     public float damageAmount = 10f;
     private bool isAttacking;
+    private Coroutine attackCoroutine;
     public float attackDelay;
 
     // Estados
@@ -52,7 +47,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private LevelDoorManager doorManager;
     private HealthPotionSpawner potionSpawner;
-    
+
     private void Awake()
     {
         // Busca el jugador automáticamente si no está asignado
@@ -70,7 +65,6 @@ public class Enemy : MonoBehaviour, IDamageable
             Debug.LogError("El Enemy necesita un NavMeshAgent. Agrega uno al GameObject.");
 
         animator = GetComponent<Animator>();
-
     }
 
     void Start()
@@ -87,17 +81,25 @@ public class Enemy : MonoBehaviour, IDamageable
         currentHealth = maxHealth;
         isDead = false;
         isAttacking = false;
-        isIdling = false;
         walkPointSet = false;
+
+        // Detener coroutines activas
+        if (attackCoroutine != null)
+        {
+            StopCoroutine(attackCoroutine);
+            attackCoroutine = null;
+        }
 
         // Reactivar componentes
         agent.enabled = true;
         GetComponent<Collider>().enabled = true;
 
-        // Resetear animador si es necesario
+        // Resetear animador completamente
         if (animator != null)
         {
             animator.SetFloat("moverse", 0f);
+            animator.SetBool("atacar", false);
+            animator.SetBool("morirse", false);
         }
     }
 
@@ -127,12 +129,6 @@ public class Enemy : MonoBehaviour, IDamageable
     //PATRULLA
     private void Patroling()
     {
-        if (isIdling)
-        {
-            animator.SetFloat("moverse", 0f);
-            return;
-        }
-
         if (!walkPointSet) SearchWalkPoint();
 
         if (walkPointSet)
@@ -140,32 +136,15 @@ public class Enemy : MonoBehaviour, IDamageable
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
-        // Llegó al punto
+        // Llegó al punto - buscar nuevo punto inmediatamente
         if (distanceToWalkPoint.magnitude < 1f)
         {
             walkPointSet = false;
-
-            if (Random.value < idleChance)
-            {
-                StartCoroutine(IdleRoutine());
-            }
         }
 
-        animator.SetFloat("moverse", 0.1f);
-    }
-
-    private IEnumerator IdleRoutine()
-    {
-        isIdling = true;
-
-        //tiempo aleatorio de la idle
-        float idleTime = Random.Range(minIdleTime, maxIdleTime);
-
-        Debug.Log("Enemigo en pausa por " + idleTime + " segundos");
-
-        yield return new WaitForSeconds(idleTime);
-
-        isIdling = false;
+        // Animación de movimiento basada en velocidad real
+        float normalizedSpeed = agent.velocity.magnitude / agent.speed;
+        animator.SetFloat("moverse", normalizedSpeed);
     }
 
     private void SearchWalkPoint()
@@ -184,7 +163,10 @@ public class Enemy : MonoBehaviour, IDamageable
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
-        animator.SetFloat("moverse", 0.1f);
+
+        // Animación de movimiento basada en velocidad real
+        float normalizedSpeed = agent.velocity.magnitude / agent.speed;
+        animator.SetFloat("moverse", normalizedSpeed);
     }
 
     private void AttackPlayer()
@@ -200,7 +182,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
         if (!isAttacking)
         {
-            StartCoroutine(AttackRoutine());
+            attackCoroutine = StartCoroutine(AttackRoutine());
         }
     }
 
@@ -209,24 +191,29 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         isAttacking = true;
 
-        animator.SetTrigger("atacar");
+        // Activar animación de ataque con BOOL
+        animator.SetBool("atacar", true);
 
         yield return new WaitForSeconds(attackDelay);
 
-        Debug.Log("¡Ataca!");
-
+        // Realizar el daño
         if (player != null && Vector3.Distance(transform.position, player.position) <= attackRange)
         {
             PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(damageAmount);
+                Debug.Log("¡Ataca! Daño aplicado: " + damageAmount);
             }
         }
+
+        // Desactivar animación de ataque
+        animator.SetBool("atacar", false);
 
         yield return new WaitForSeconds(timeBetweenAttacks);
 
         isAttacking = false;
+        attackCoroutine = null;
     }
 
     public void TakeDamage(int amount)
@@ -246,6 +233,13 @@ public class Enemy : MonoBehaviour, IDamageable
 
         Debug.Log(gameObject.name + " ha muerto.");
 
+        // Detener coroutine de ataque si está activa
+        if (attackCoroutine != null)
+        {
+            StopCoroutine(attackCoroutine);
+            attackCoroutine = null;
+        }
+
         agent.enabled = false;
         GetComponent<Collider>().enabled = false;
 
@@ -257,22 +251,30 @@ public class Enemy : MonoBehaviour, IDamageable
         // Notificar a ambos sistemas
         if (doorManager != null)
             doorManager.EnemyDefeated();
-        
+
         if (potionSpawner != null)
             potionSpawner.EnemyDefeated();
- 
     }
 
     private IEnumerator DyingCoroutine()
     {
-        animator.SetTrigger("morirse");
+        // Activar animación de muerte con BOOL
+        animator.SetBool("morirse", true);
 
         yield return new WaitForSeconds(timeBeforeDying);
 
-        Destroy(gameObject);
+        // Desactivar animación (aunque ya no importa porque se va a destruir/liberar)
+        animator.SetBool("morirse", false);
 
-        // CORRECCIÓN: Usar enemyPool en lugar de IObjectPool
-        // Y NO destruir el GameObject, solo devolverlo al pool
+        // Usar pool si está disponible, sino destruir
+        if (enemyPool != null)
+        {
+            enemyPool.Release(this);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Visualizar rangos en el editor

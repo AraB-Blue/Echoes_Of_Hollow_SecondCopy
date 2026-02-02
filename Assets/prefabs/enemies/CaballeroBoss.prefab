@@ -510,10 +510,10 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  walkPoint: {x: 2, y: 3, z: 2}
+  walkPoint: {x: 5, y: 5, z: 5}
   walkPointRange: 5
   minIdleTime: 2
-  maxIdleTime: 3
+  maxIdleTime: 8
   idleChance: 0.1
   timeBetweenAttacks: 4
   damageAmount: 10

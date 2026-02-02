@@ -563,6 +563,6 @@ MonoBehaviour:
   timeBetweenAttacks: 4
   damageAmount: 10
   attackDelay: 2
-  sightRange: 3.54
-  attackRange: 2.04
+  sightRange: 3.96
+  attackRange: 3.47
   timeBeforeDying: 3.7
