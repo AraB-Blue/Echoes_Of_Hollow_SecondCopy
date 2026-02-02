@@ -253,6 +253,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   maxHealth: 15
+  audioSource: {fileID: 0}
+  audioMinDistance: 5
+  audioMaxDistance: 20
+  patrolSounds:
+  - {fileID: 8300000, guid: 581aec1d0fd2d23429559bea8ca47be3, type: 3}
+  minPatrolSoundInterval: 3
+  maxPatrolSoundInterval: 8
+  patrolSoundVolume: 0.5
+  attackSounds:
+  - {fileID: 8300000, guid: c460bf170a1a6a148bb828cd800bee77, type: 3}
+  attackSoundVolume: 0.8
+  deathSound: {fileID: 8300000, guid: 01720575a7b650444bd92038fa18f259, type: 3}
+  deathSoundVolume: 1
   agent: {fileID: 1938510453181558667}
   player: {fileID: 0}
   whatIsGround:
@@ -263,9 +276,6 @@ MonoBehaviour:
     m_Bits: 64
   walkPoint: {x: 5, y: 5, z: 0}
   walkPointRange: 6
-  minIdleTime: 2
-  maxIdleTime: 3.05
-  idleChance: 0.1
   timeBetweenAttacks: 2
   damageAmount: 10
   attackDelay: 0.8

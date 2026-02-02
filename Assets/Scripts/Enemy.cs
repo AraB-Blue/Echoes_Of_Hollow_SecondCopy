@@ -14,8 +14,17 @@ public class Enemy : MonoBehaviour, IDamageable
     //public GameObject deathEffect;
 
     [Header("Sistema de Audio")]
+    [Tooltip("Déjalo vacío, se creará automáticamente")]
     public AudioSource audioSource;
 
+    [Header("Configuración de Audio 3D")]
+    [Tooltip("Distancia mínima donde el audio está a volumen máximo")]
+    public float audioMinDistance = 5f;
+
+    [Tooltip("Distancia máxima donde el audio deja de oírse")]
+    public float audioMaxDistance = 20f;
+
+    [Header("Sonidos de Patrulla")]
     [Tooltip("Sonidos que se reproducen aleatoriamente durante la patrulla")]
     public AudioClip[] patrolSounds;
 
@@ -29,6 +38,7 @@ public class Enemy : MonoBehaviour, IDamageable
     [Range(0f, 1f)]
     public float patrolSoundVolume = 0.5f;
 
+    [Header("Sonidos de Ataque")]
     [Tooltip("Sonidos que se reproducen al atacar")]
     public AudioClip[] attackSounds;
 
@@ -36,6 +46,7 @@ public class Enemy : MonoBehaviour, IDamageable
     [Range(0f, 1f)]
     public float attackSoundVolume = 0.8f;
 
+    [Header("Sonidos de Muerte")]
     [Tooltip("Sonido que se reproduce al morir")]
     public AudioClip deathSound;
 
@@ -99,18 +110,39 @@ public class Enemy : MonoBehaviour, IDamageable
 
         animator = GetComponent<Animator>();
 
-        // Obtener o crear AudioSource
+        // Configurar AudioSource automáticamente
+        SetupAudioSource();
+    }
+
+    /// <summary>
+    /// Configura el AudioSource automáticamente si no existe o lo actualiza si ya existe
+    /// </summary>
+    private void SetupAudioSource()
+    {
+        // Si no hay referencia, intentar obtener componente existente
         if (audioSource == null)
         {
             audioSource = GetComponent<AudioSource>();
-            if (audioSource == null)
-            {
-                audioSource = gameObject.AddComponent<AudioSource>();
-                audioSource.spatialBlend = 1f; // Audio 3D
-                audioSource.minDistance = 5f;
-                audioSource.maxDistance = 20f;
-            }
         }
+
+        // Si aún no existe, crear uno nuevo
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            Debug.Log($"AudioSource creado automáticamente en {gameObject.name}");
+        }
+
+        // Configurar propiedades para audio 3D espacial
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 1f; // 1 = completamente 3D, 0 = completamente 2D
+        audioSource.minDistance = audioMinDistance;
+        audioSource.maxDistance = audioMaxDistance;
+        audioSource.rolloffMode = AudioRolloffMode.Linear;
+        audioSource.dopplerLevel = 0f; // Desactivar efecto doppler (opcional)
+
+        // Configuración adicional recomendada
+        audioSource.loop = false;
+        audioSource.priority = 128; // Prioridad media (0 = más alta, 256 = más baja)
     }
 
     void Start()
@@ -359,6 +391,12 @@ public class Enemy : MonoBehaviour, IDamageable
         if (patrolSounds == null || patrolSounds.Length == 0)
             return;
 
+        if (audioSource == null)
+        {
+            Debug.LogWarning($"AudioSource no encontrado en {gameObject.name}");
+            return;
+        }
+
         if (Time.time >= nextPatrolSoundTime && !audioSource.isPlaying)
         {
             // Seleccionar un sonido aleatorio
@@ -381,6 +419,12 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         if (attackSounds == null || attackSounds.Length == 0)
             return;
+
+        if (audioSource == null)
+        {
+            Debug.LogWarning($"AudioSource no encontrado en {gameObject.name}");
+            return;
+        }
 
         // Seleccionar un sonido aleatorio
         AudioClip randomClip = attackSounds[Random.Range(0, attackSounds.Length)];
