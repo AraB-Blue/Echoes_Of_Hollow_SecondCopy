@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa72c0dad7dc5b64e9516e2287303cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FinalBoss
-  maxHealth: 100
+  maxHealth: 200
   agent: {fileID: 1234770545824485424}
   player: {fileID: 0}
   whatIsGround:
@@ -347,18 +347,20 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 15
   canMove: 1
-  timeBetweenAttacks: 8
+  timeBetweenAttacks: 6
   attack1Damage: 10
   attack1Delay: 2
-  attack1Range: 2.5
+  attack1Range: 4.05
   attack2Damage: 20
   attack2Delay: 3
-  attack2Range: 3
-  attack1Probability: 70
+  attack2Range: 4.06
+  attack1Probability: 50
   isAttacking: 0
   sightRange: 10
-  timeBeforeDying: 3
+  timeBeforeDying: 4
 --- !u!195 &1234770545824485424
 NavMeshAgent:
   m_ObjectHideFlags: 0

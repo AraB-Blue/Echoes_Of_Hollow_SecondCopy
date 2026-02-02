@@ -16,8 +16,13 @@ public class FinalBoss : MonoBehaviour, IDamageable
     public LayerMask whatIsGround;
     public LayerMask whatIsPlayer;
 
+    // Patrulla (similar a Enemy)
+    public Vector3 walkPoint;
+    private bool walkPointSet;
+    public float walkPointRange = 15f;
+
     public bool canMove = true;
-    
+
     //ataque
     public float timeBetweenAttacks = 8f;
 
@@ -73,16 +78,19 @@ public class FinalBoss : MonoBehaviour, IDamageable
     {
         if (isDead) return;
 
-
         //comprobar si el jugador esta en rango
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        
+
         // Usar el rango mayor de los dos ataques
         float maxAttackRange = Mathf.Max(attack1Range, attack2Range);
         playerInAttackRange = Physics.CheckSphere(transform.position, maxAttackRange, whatIsPlayer);
 
-        //Logica estados
-        if (playerInSightRange && !playerInAttackRange)
+        //Logica estados (similar a Enemy - con patrulla)
+        if (!playerInSightRange && !playerInAttackRange)
+        {
+            Patroling();
+        }
+        else if (playerInSightRange && !playerInAttackRange)
         {
             ChasePlayer();
         }
@@ -90,19 +98,47 @@ public class FinalBoss : MonoBehaviour, IDamageable
         {
             AttackPlayer();
         }
+    }
 
-        else
+    // PATRULLA (copiado de Enemy)
+    private void Patroling()
+    {
+        if (!walkPointSet) SearchWalkPoint();
+
+        if (walkPointSet)
+            agent.SetDestination(walkPoint);
+
+        Vector3 distanceToWalkPoint = transform.position - walkPoint;
+
+        // Llegó al punto - buscar nuevo punto inmediatamente
+        if (distanceToWalkPoint.magnitude < 1f)
         {
-            UpdateAnimator(0f);
+            walkPointSet = false;
         }
+
+        // Animación de movimiento basada en velocidad real
+        float normalizedSpeed = agent.velocity.magnitude / agent.speed;
+        UpdateAnimator(normalizedSpeed);
+    }
+
+    private void SearchWalkPoint()
+    {
+        float randomZ = Random.Range(-walkPointRange, walkPointRange);
+        float randomX = Random.Range(-walkPointRange, walkPointRange);
+
+        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+
+        // Verifica que el punto esté sobre el suelo
+        if (Physics.Raycast(walkPoint, Vector3.down, 2f, whatIsGround))
+            walkPointSet = true;
     }
 
     private void UpdateAnimator(float Speed)
     {
         animator.SetFloat("Speed", Speed);
     }
-    
-    
+
+
     //Seguir al jugador
     private void ChasePlayer()
     {
@@ -114,9 +150,11 @@ public class FinalBoss : MonoBehaviour, IDamageable
 
     private void AttackPlayer()
     {
+        // El boss se detiene para atacar
         agent.isStopped = true;
         UpdateAnimator(0f);
 
+        // Mira al jugador
         Vector3 lookPos = player.position;
         lookPos.y = transform.position.y;
         transform.LookAt(lookPos);
@@ -145,6 +183,9 @@ public class FinalBoss : MonoBehaviour, IDamageable
             yield return StartCoroutine(ExecuteAttack2());
         }
 
+        // Reactivar movimiento
+        agent.isStopped = false;
+
         yield return new WaitForSeconds(timeBetweenAttacks);
         canMove = true;
         isAttacking = false;
@@ -153,9 +194,9 @@ public class FinalBoss : MonoBehaviour, IDamageable
     // Ataque 1 - Ataque normal
     private IEnumerator ExecuteAttack1()
     {
-        Debug.Log("�Jefe usa ataque normal!");
+        Debug.Log("¡Jefe usa ataque normal!");
 
-        if(animator != null)
+        if (animator != null)
         {
             animator.SetBool("Attack1", true);
         }
@@ -168,7 +209,7 @@ public class FinalBoss : MonoBehaviour, IDamageable
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(attack1Damage);
-                Debug.Log("Ataque 1 conectado - Da�o: " + attack1Damage);
+                Debug.Log("Ataque 1 conectado - Daño: " + attack1Damage);
             }
         }
 
@@ -181,11 +222,11 @@ public class FinalBoss : MonoBehaviour, IDamageable
     // Ataque 2 - Ataque especial poderoso
     private IEnumerator ExecuteAttack2()
     {
-        Debug.Log("�Jefe usa ataque especial!");
+        Debug.Log("¡Jefe usa ataque especial!");
 
-        if (animator !=null)
+        if (animator != null)
         {
-            animator.SetBool("attack2", true);
+            animator.SetBool("Attack2", true);
         }
 
         yield return new WaitForSeconds(attack2Delay);
@@ -196,11 +237,11 @@ public class FinalBoss : MonoBehaviour, IDamageable
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(attack2Damage);
-                Debug.Log("Ataque 2 conectado - Da�o: " + attack2Damage);
+                Debug.Log("Ataque 2 conectado - Daño: " + attack2Damage);
             }
         }
 
-        if (animator !=null)
+        if (animator != null)
         {
             animator.SetBool("Attack2", false);
         }
@@ -210,7 +251,7 @@ public class FinalBoss : MonoBehaviour, IDamageable
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
-        Debug.Log(gameObject.name + "recibio" + amount + "de da�o. Vida restante" + currentHealth);
+        Debug.Log(gameObject.name + " recibio " + amount + " de daño. Vida restante: " + currentHealth);
 
         if (currentHealth <= 0)
             Die();
@@ -232,7 +273,7 @@ public class FinalBoss : MonoBehaviour, IDamageable
 
     private IEnumerator DyingCoroutine()
     {
-        if(animator !=null)
+        if (animator != null)
         {
             animator.SetBool("isDead", true);
         }
@@ -258,10 +299,10 @@ public class FinalBoss : MonoBehaviour, IDamageable
 
         if (PlayerHealth.instance != null)
         {
-            Destroy (PauseManager.Instance.gameObject);
+            Destroy(PauseManager.Instance.gameObject);
             PauseManager.Instance = null;
         }
-       //si se borra algo, que sea desde aqui
+        //si se borra algo, que sea desde aqui
         if (PauseManager.Instance != null)
         {
             Destroy(PauseManager.Instance.gameObject);
@@ -273,8 +314,6 @@ public class FinalBoss : MonoBehaviour, IDamageable
         Time.timeScale = 1f;
 
         Destroy(gameObject);
-
-
     }
 
     // Visualizar rangos en el editor
