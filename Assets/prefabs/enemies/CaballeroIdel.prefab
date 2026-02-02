@@ -546,7 +546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8a9fe51723bda45b3faee1601b7a38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  maxHealth: 100
+  maxHealth: 70
   audioSource: {fileID: 0}
   audioMinDistance: 5
   audioMaxDistance: 20
