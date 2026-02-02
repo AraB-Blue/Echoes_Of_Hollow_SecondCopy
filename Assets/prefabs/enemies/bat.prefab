@@ -9,6 +9,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 1e658789032a51d49b0a61160f24f3ac, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.1591
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1e658789032a51d49b0a61160f24f3ac, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1591
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1e658789032a51d49b0a61160f24f3ac, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.1591
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1e658789032a51d49b0a61160f24f3ac, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.99
       objectReference: {fileID: 0}
@@ -260,11 +272,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 581aec1d0fd2d23429559bea8ca47be3, type: 3}
   minPatrolSoundInterval: 3
   maxPatrolSoundInterval: 8
-  patrolSoundVolume: 0.5
+  patrolSoundVolume: 0.683
   attackSounds:
-  - {fileID: 8300000, guid: c460bf170a1a6a148bb828cd800bee77, type: 3}
+  - {fileID: 8300000, guid: 865dcde238a671c47a2095e1567c2b15, type: 3}
   attackSoundVolume: 0.8
-  deathSound: {fileID: 8300000, guid: 01720575a7b650444bd92038fa18f259, type: 3}
+  deathSound: {fileID: 8300000, guid: 54897979df1c3ac4fb6785db48add972, type: 3}
   deathSoundVolume: 1
   agent: {fileID: 1938510453181558667}
   player: {fileID: 0}
@@ -301,10 +313,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.9488305
+  m_Radius: 0.5481312
   m_Height: 2.8406594
   m_Direction: 1
-  m_Center: {x: 0.057677627, y: 1.2692434, z: -0.015473127}
+  m_Center: {x: -0.009296391, y: 1.2692434, z: -0.087841846}
 --- !u!95 &3831014135073300202
 Animator:
   serializedVersion: 7
