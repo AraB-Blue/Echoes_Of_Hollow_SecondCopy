@@ -365,7 +365,12 @@ public class Enemy : MonoBehaviour, IDamageable
         // Activar animación de muerte con BOOL
         animator.SetBool("morirse", true);
 
-        yield return new WaitForSeconds(timeBeforeDying);
+        if (audioSource != null && deathSound != null)
+        {
+           audioSource.PlayOneShot(deathSound, deathSoundVolume);
+        }
+
+        yield return new WaitForSeconds(Mathf.Max(timeBeforeDying, deathSound.length));
 
         // Desactivar animación (aunque ya no importa porque se va a destruir/liberar)
         animator.SetBool("morirse", false);
