@@ -15,17 +15,15 @@ public class PlayerHealth : MonoBehaviour
     private float lastDamageTime = -999f;
     public static PlayerHealth instance;
     private PlayerHealthBar healthBarCache;
-    private HealthBarFlowers flowersBarCache; // Nueva referencia
+    private HealthBarFlowers flowersBarCache;
     private bool isDead = false;
 
-    // Métodos públicos para acceder a la vida desde otros scripts
     public float GetCurrentHealth() => currentHealth;
     public float GetMaxHealth() => maxHealth;
     public float GetHealthPercentage() => currentHealth / maxHealth;
 
     void Awake()
     {
-        // Singleton: mantener la vida persistente entre escenas
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -34,7 +32,6 @@ public class PlayerHealth : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
 
-        // Si es la primera vez, inicializar la vida
         if (currentHealth == 0)
         {
             currentHealth = maxHealth;
@@ -47,13 +44,10 @@ public class PlayerHealth : MonoBehaviour
         CacheHealthBars();
     }
 
-    // Cachear ambas barras de vida
     private void CacheHealthBars()
     {
         healthBarCache = FindFirstObjectByType<PlayerHealthBar>();
         flowersBarCache = FindFirstObjectByType<HealthBarFlowers>();
-
-        // Actualizar ambas barras al inicio
         UpdateHealthUI();
     }
 
@@ -75,13 +69,11 @@ public class PlayerHealth : MonoBehaviour
 
     private void UpdateHealthUI()
     {
-        // Actualizar la barra antigua
         if (healthBarCache != null)
         {
             healthBarCache.SetValue(currentHealth);
         }
 
-        // Actualizar la barra de flores
         if (flowersBarCache != null)
         {
             flowersBarCache.UpdateBar();
@@ -112,15 +104,16 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(timeBeforeMenu);
         Debug.Log("[PlayerHealth] volviendo al menú...");
 
-        if (instance == this)
-        {
-            instance = null;
-        }
+        // Limpiar singleton ANTES de destruir
+        instance = null;
+
+        // También resetear PlayerScript para que el nuevo jugador pueda registrarse
+        PlayerScript.instance = null;
+
         Destroy(gameObject);
         SceneManager.LoadScene(menuSceneName);
     }
 
-    // Llamar esto cuando cambies de escena para reconectar las barras
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -153,7 +146,7 @@ public class PlayerHealth : MonoBehaviour
 
     public static void ResetPlayer()
     {
-        if (instance !=null)
+        if (instance != null)
         {
             Destroy(instance.gameObject);
             instance = null;

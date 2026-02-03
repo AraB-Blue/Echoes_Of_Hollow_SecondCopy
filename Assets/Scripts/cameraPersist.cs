@@ -41,11 +41,25 @@ public class CameraPersist : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        VerificarEscenaActual();
-
         if (!EsEscenaDeJuego(scene.name))
         {
             ResetCamera();
+        }
+        else
+        {
+            // Intentar asignar al jugador cuando carga la escena
+            VerificarEscenaActual();
+        }
+    }
+
+    // Este método se llama desde PlayerScript cuando el jugador se instancia
+    // Esto resuelve el problema de que el jugador aparezca DESPUÉS de que la escena ya se cargó
+    public void OnPlayerSpawned()
+    {
+        if (EsEscenaDeJuego(SceneManager.GetActiveScene().name))
+        {
+            seguimientoActivo = true;
+            AsignarJugador();
         }
     }
 
@@ -95,4 +109,3 @@ public class CameraPersist : MonoBehaviour
         }
     }
 }
-

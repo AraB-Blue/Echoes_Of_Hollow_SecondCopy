@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -10,15 +8,9 @@ public class PlayerScript : MonoBehaviour
     private Rigidbody rb;
     private NavMeshAgent agent;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-
-        rb = GetComponent<Rigidbody>();
-        agent = GetComponent<NavMeshAgent>();
-        
-        if (instance !=null)
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
             return;
@@ -27,16 +19,32 @@ public class PlayerScript : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
 
+        rb = GetComponent<Rigidbody>();
+        agent = GetComponent<NavMeshAgent>();
+    }
+
+    void OnEnable()
+    {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    void OnSceneLoaded (Scene scene, LoadSceneMode mode)
+    // IMPORTANTE: sin esto, la suscripción se acumula cada vez que se crea un nuevo jugador
+    void OnDisable()
     {
-        agent.enabled = false;
-
-        //transform.position = spawnPoint.position;
-
-        agent.enabled = true;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (agent == null) return;
+
+        agent.enabled = false;
+        agent.enabled = true;
+
+        // Notificar a la cámara de que hay un jugador nuevo disponible
+        if (CameraPersist.instance != null)
+        {
+            CameraPersist.instance.OnPlayerSpawned();
+        }
+    }
 }
