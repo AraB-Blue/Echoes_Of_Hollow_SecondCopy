@@ -5519,7 +5519,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -9020295309892371198, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
       propertyPath: dashVolume
-      value: 0.668
+      value: 0.466
       objectReference: {fileID: 0}
     - target: {fileID: -9020295309892371198, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
       propertyPath: footstepSounds.Array.size

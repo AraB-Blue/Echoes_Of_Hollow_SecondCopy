@@ -526,7 +526,7 @@ MonoBehaviour:
   walkPoint: {x: 5, y: 5, z: 5}
   walkPointRange: 5
   timeBetweenAttacks: 3
-  damageAmount: 10
+  damageAmount: 20
   attackDelay: 2
   sightRange: 3.54
   attackRange: 2.04

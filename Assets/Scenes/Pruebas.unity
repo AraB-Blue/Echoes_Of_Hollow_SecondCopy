@@ -3259,7 +3259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9038614712322893489, guid: d908d3e037457be48a75fe3ef35f45a7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -25.495972
+      value: 1.08
       objectReference: {fileID: 0}
     - target: {fileID: 9038614712322893489, guid: d908d3e037457be48a75fe3ef35f45a7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3267,7 +3267,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9038614712322893489, guid: d908d3e037457be48a75fe3ef35f45a7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -23.350355
+      value: -16.72
       objectReference: {fileID: 0}
     - target: {fileID: 9038614712322893489, guid: d908d3e037457be48a75fe3ef35f45a7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4340,6 +4340,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   maxHealth: 100
   audioSource: {fileID: 0}
+  audioMinDistance: 5
+  audioMaxDistance: 20
   patrolSounds: []
   minPatrolSoundInterval: 3
   maxPatrolSoundInterval: 8
