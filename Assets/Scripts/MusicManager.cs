@@ -10,30 +10,29 @@ public class MusicManager : MonoBehaviour
 
     public AudioClip musicaNivel;
     public AudioClip musicaJefe;
+    public AudioClip musicaMenu; // Música para el menú (opcional, puede ser null)
 
-    // Escenas que usan m�sica de nivel
+    // Escenas que usan música de nivel
     public List<string> escenasNivel;
 
-    // Escenas que usan m�sica de jefe
+    // Escenas que usan música de jefe
     public List<string> escenasJefe;
+
+    // Escenas que usan música de menú
+    public List<string> escenasMenu;
 
     void Awake()
     {
-        if (instance == null)
+        if (instance != null && instance != this)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-            SceneManager.sceneLoaded += OnSceneLoaded;
-        }
-        else
-        {
-            if (musicaNivel != null)
-            {
-                instance.CambiarMusica(musicaNivel);
-            }
+            // El singleton ya existe, no hacer nada más, simplemente destruirse
             Destroy(gameObject);
             return;
         }
+
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -48,16 +47,17 @@ public class MusicManager : MonoBehaviour
         {
             CambiarMusica(musicaNivel);
         }
+        else if (escenasMenu != null && escenasMenu.Contains(nombreEscena))
+        {
+            CambiarMusica(musicaMenu);
+        }
     }
 
     public void CambiarMusica(AudioClip nuevaMusica)
     {
-        if (nuevaMusica == null)
-        {
-            return;
-        }
-        
-        // Si ya est� sonando esa m�sica, NO reiniciar
+        if (nuevaMusica == null) return;
+
+        // Si ya está sonando esa música, NO reiniciar
         if (audioSource.clip == nuevaMusica && audioSource.isPlaying)
             return;
 
