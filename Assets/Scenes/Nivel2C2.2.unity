@@ -3642,6 +3642,8 @@ MonoBehaviour:
   spawnOnAllEnemiesDead: 1
   useCustomRotation: 1
   spawnRotation: {x: -90, y: 0, z: 0}
+  spawnSound: {fileID: 8300000, guid: d8bc4bc94735ac04d9b62daf40352986, type: 3}
+  soundVolume: 0.46
 --- !u!4 &1343178955
 Transform:
   m_ObjectHideFlags: 0
