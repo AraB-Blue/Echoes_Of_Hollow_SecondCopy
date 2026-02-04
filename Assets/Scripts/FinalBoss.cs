@@ -10,6 +10,8 @@ public class FinalBoss : MonoBehaviour, IDamageable
     public int maxHealth = 100;
     private int currentHealth;
 
+    [SerializeField] FinalBossHealthBar healthBar;
+
     [Header("IA")]
     public NavMeshAgent agent;
     public Transform player;
@@ -67,11 +69,14 @@ public class FinalBoss : MonoBehaviour, IDamageable
             Debug.LogError("No hay NavMeshAgent asignado al boss final");
 
         animator = GetComponent<Animator>();
+
+        healthBar = GetComponentInChildren <FinalBossHealthBar>();
     }
 
     private void Start()
     {
         currentHealth = maxHealth;
+        healthBar.UpdateHealthBar (currentHealth, maxHealth);
     }
 
     private void Update()
@@ -251,8 +256,10 @@ public class FinalBoss : MonoBehaviour, IDamageable
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
-        Debug.Log(gameObject.name + " recibio " + amount + " de daño. Vida restante: " + currentHealth);
+        //Debug.Log(gameObject.name + " recibio " + amount + " de daño. Vida restante: " + currentHealth);
 
+        healthBar.UpdateHealthBar (currentHealth, maxHealth);
+        
         if (currentHealth <= 0)
             Die();
     }
