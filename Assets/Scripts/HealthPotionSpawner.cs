@@ -14,11 +14,26 @@ public class HealthPotionSpawner : MonoBehaviour
     [Tooltip("Rotación al spawnear (X=90 para vertical, Y para girar horizontalmente, Z para inclinar)")]
     [SerializeField] private Vector3 spawnRotation = new Vector3(90f, 0f, 0f); // Vertical por defecto
     
+    [Header ("Audio")]
+    [Tooltip ("Sonido Spawn Pocion")]
+    [SerializeField] private AudioClip spawnSound;
+
+    [Tooltip("Volumen pocion spawn")]
+    [SerializeField] private float soundVolume = 1f;
+
+
     private int enemyCount;
     private bool potionSpawned = false;
+    private AudioSource audioSource;
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent <AudioSource>();
+        }
         // Cuenta todos los enemigos al inicio
         enemyCount = GameObject.FindGameObjectsWithTag("enemy").Length;
         Debug.Log("Enemigos detectados al inicio: " + enemyCount);
@@ -49,6 +64,8 @@ public class HealthPotionSpawner : MonoBehaviour
         
         GameObject potion = Instantiate(healthPotionPrefab, spawnPos, spawnRot);
         potionSpawned = true;
+
+        PlaySpawnSound();
         
         Debug.Log("¡Poción de vida spawneada en " + spawnPos + " con rotación " + spawnRotation + "!");
     }
@@ -59,6 +76,18 @@ public class HealthPotionSpawner : MonoBehaviour
         if (!potionSpawned)
         {
             SpawnHealthPotion();
+        }
+    }
+
+    private void PlaySpawnSound()
+    {
+        if (spawnSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(spawnSound, soundVolume);
+        }
+        else if (spawnSound == null)
+        {
+            Debug.LogWarning("No se asignó un AudioClip para el sonido de spawn!");
         }
     }
 }
