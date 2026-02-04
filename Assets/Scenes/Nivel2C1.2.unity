@@ -15,24 +15,24 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 0
-  m_FogColor: {r: 0.8470589, g: 0.8431373, b: 0.9333334, a: 1}
-  m_FogMode: 1
+  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogMode: 3
   m_FogDensity: 0.01
-  m_LinearFogStart: 40
-  m_LinearFogEnd: 200
+  m_LinearFogStart: 0
+  m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 0.45
+  m_AmbientIntensity: 1
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.44705883, g: 0.36862746, b: 0.6117647, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 8e7813a63b8d2e340814fcdcfe48ec12, type: 2}
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
-  m_DefaultReflectionMode: 1
+  m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
@@ -1240,7 +1240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efed85fc15ce98d4fa7d59dd4f900deb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthPotionSpawner
-  healthPotionPrefab: {fileID: 4460168364500459254, guid: 307e74a8c08006c44a34cec90607b12d, type: 3}
+  healthPotionPrefab: {fileID: 3433294052640856655, guid: 2b86d0db4ada1c44da3e159092be11b1, type: 3}
   spawnPosition: {fileID: 1811067076}
   spawnOnAllEnemiesDead: 1
   useCustomRotation: 1
@@ -1331,6 +1331,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1356627404}
     m_Modifications:
+    - target: {fileID: 7662165134317207756, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
+      propertyPath: maxHealth
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 7662165134317207756, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: damageAmount
       value: 15
@@ -2582,6 +2586,7 @@ MonoBehaviour:
   audioSource: {fileID: 885260117}
   musicaNivel: {fileID: 8300000, guid: b86a10e0d3071e240a0f041ce66dc8c8, type: 3}
   musicaJefe: {fileID: 8300000, guid: fd585a46ff821c144800e9acd3c8bfa8, type: 3}
+  musicaMenu: {fileID: 0}
   escenasNivel:
   - Nivel2Inicio
   - Nivel2Poblado
@@ -2591,6 +2596,7 @@ MonoBehaviour:
   - Nivel2C2.2
   escenasJefe:
   - Nivel2Final
+  escenasMenu: []
 --- !u!82 &885260117
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3732,6 +3738,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1356627404}
     m_Modifications:
     - target: {fileID: 7662165134317207756, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
+      propertyPath: maxHealth
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662165134317207756, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: damageAmount
       value: 15
       objectReference: {fileID: 0}
@@ -4194,6 +4204,7 @@ Transform:
   - {fileID: 399032853}
   - {fileID: 1441412689}
   - {fileID: 2002692116}
+  - {fileID: 1439550672}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1365069887
@@ -4408,15 +4419,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1356627404}
     m_Modifications:
+    - target: {fileID: 7662165134317207756, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
+      propertyPath: maxHealth
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 8513013435767749643, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: m_Name
       value: CaballeroIdel
       objectReference: {fileID: 0}
     - target: {fileID: 9038614712322893489, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -55.307167
+      value: -6.9071655
       objectReference: {fileID: 0}
     - target: {fileID: 9038614712322893489, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4424,7 +4439,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9038614712322893489, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 331.26288
+      value: 10.870728
       objectReference: {fileID: 0}
     - target: {fileID: 9038614712322893489, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4459,6 +4474,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
+--- !u!4 &1439550672 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9038614712322893489, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
+  m_PrefabInstance: {fileID: 1439550671}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1441412688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4467,6 +4487,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1356627404}
     m_Modifications:
+    - target: {fileID: 7662165134317207756, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
+      propertyPath: maxHealth
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 7662165134317207756, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: damageAmount
       value: 15
@@ -6460,6 +6484,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1356627404}
     m_Modifications:
     - target: {fileID: 7662165134317207756, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
+      propertyPath: maxHealth
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662165134317207756, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: damageAmount
       value: 15
       objectReference: {fileID: 0}
@@ -6847,4 +6875,3 @@ SceneRoots:
   - {fileID: 885260118}
   - {fileID: 322106766}
   - {fileID: 1913747442}
-  - {fileID: 1439550671}

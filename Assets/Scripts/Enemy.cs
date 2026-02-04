@@ -10,8 +10,10 @@ public class Enemy : MonoBehaviour, IDamageable
     public int maxHealth = 100;
     private int currentHealth;
 
+    [SerializeField] EnemyHealthBar healthBar;  
+
     [Header("Feedback opcional")]
-    //public GameObject deathEffect;
+    // public GameObject deathEffect;
 
     [Header("Sistema de Audio")]
     [Tooltip("Déjalo vacío, se creará automáticamente")]
@@ -110,6 +112,8 @@ public class Enemy : MonoBehaviour, IDamageable
 
         animator = GetComponent<Animator>();
 
+        healthBar = GetComponentInChildren <EnemyHealthBar>();
+
         // Configurar AudioSource automáticamente
         SetupAudioSource();
     }
@@ -148,6 +152,7 @@ public class Enemy : MonoBehaviour, IDamageable
     void Start()
     {
         currentHealth = maxHealth;
+        healthBar.UpdateHealthBar (currentHealth, maxHealth); 
 
         doorManager = FindFirstObjectByType<LevelDoorManager>();
         potionSpawner = FindFirstObjectByType<HealthPotionSpawner>();
@@ -320,7 +325,8 @@ public class Enemy : MonoBehaviour, IDamageable
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
-        Debug.Log(gameObject.name + " recibió " + amount + " de daño. Vida restante: " + currentHealth);
+        healthBar.UpdateHealthBar (currentHealth, maxHealth); 
+        //Debug.Log(gameObject.name + " recibió " + amount + " de daño. Vida restante: " + currentHealth);
 
         if (currentHealth <= 0)
             Die();
@@ -332,7 +338,7 @@ public class Enemy : MonoBehaviour, IDamageable
         if (isDead) return;
         isDead = true;
 
-        Debug.Log(gameObject.name + " ha muerto.");
+        //Debug.Log(gameObject.name + " ha muerto.");
 
         // Detener coroutine de ataque si está activa
         if (attackCoroutine != null)

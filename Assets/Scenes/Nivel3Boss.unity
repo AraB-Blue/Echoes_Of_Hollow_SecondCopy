@@ -15,24 +15,24 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 0
-  m_FogColor: {r: 0.8470589, g: 0.8431373, b: 0.9333334, a: 1}
-  m_FogMode: 1
+  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogMode: 3
   m_FogDensity: 0.01
-  m_LinearFogStart: 40
-  m_LinearFogEnd: 200
+  m_LinearFogStart: 0
+  m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 0.45
+  m_AmbientIntensity: 1
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.44705886, g: 0.36862746, b: 0.6117647, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 8e7813a63b8d2e340814fcdcfe48ec12, type: 2}
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
-  m_DefaultReflectionMode: 1
+  m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
@@ -3287,6 +3287,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2308462208985255650, guid: 5810e35af0fe0b84c97c14bd2347ef09, type: 3}
+      propertyPath: maxHealth
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308462208985255650, guid: 5810e35af0fe0b84c97c14bd2347ef09, type: 3}
       propertyPath: sightRange
       value: 14.49
       objectReference: {fileID: 0}
@@ -3301,6 +3305,10 @@ PrefabInstance:
     - target: {fileID: 2308462208985255650, guid: 5810e35af0fe0b84c97c14bd2347ef09, type: 3}
       propertyPath: attack2Range
       value: 3.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308462208985255650, guid: 5810e35af0fe0b84c97c14bd2347ef09, type: 3}
+      propertyPath: attack1Damage
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3340,12 +3348,14 @@ MonoBehaviour:
   audioSource: {fileID: 1832059711}
   musicaNivel: {fileID: 8300000, guid: 95e846602854347428e89e5bb4ba7729, type: 3}
   musicaJefe: {fileID: 8300000, guid: ad3fe54a0a9d29544bf1c887c739f6a0, type: 3}
+  musicaMenu: {fileID: 0}
   escenasNivel:
   - Nivel3Inicio
   - Nivel3.1
   - Nivel3.2
   escenasJefe:
   - Nivel3Boss
+  escenasMenu: []
 --- !u!82 &1832059711
 AudioSource:
   m_ObjectHideFlags: 0

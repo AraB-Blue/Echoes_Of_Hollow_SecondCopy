@@ -3253,6 +3253,26 @@ PrefabInstance:
       propertyPath: walkPoint.z
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6470834433799572571, guid: d908d3e037457be48a75fe3ef35f45a7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6470834433799572571, guid: d908d3e037457be48a75fe3ef35f45a7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012063975300382833, guid: d908d3e037457be48a75fe3ef35f45a7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125924238660292210, guid: d908d3e037457be48a75fe3ef35f45a7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125924238660292210, guid: d908d3e037457be48a75fe3ef35f45a7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8513013435767749643, guid: d908d3e037457be48a75fe3ef35f45a7, type: 3}
       propertyPath: m_Name
       value: CaballeroBoss
@@ -4339,6 +4359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   maxHealth: 100
+  healthBar: {fileID: 0}
   audioSource: {fileID: 0}
   audioMinDistance: 5
   audioMaxDistance: 20
@@ -5272,6 +5293,14 @@ PrefabInstance:
       propertyPath: 'patrolSounds.Array.data[0]'
       value: 
       objectReference: {fileID: 8300000, guid: 581aec1d0fd2d23429559bea8ca47be3, type: 3}
+    - target: {fileID: 2723205246200118824, guid: 483398fff3496ae40bf97e1cfdaba40f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2723205246200118824, guid: 483398fff3496ae40bf97e1cfdaba40f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4975377558865225325, guid: 483398fff3496ae40bf97e1cfdaba40f, type: 3}
       propertyPath: m_Name
       value: mutante
@@ -5643,6 +5672,18 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 276b1763bea3fb2469d0a1b6a27bbab4, type: 2}
+    - target: {fileID: 5027880932339724296, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5027880932339724296, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7988001409458596082, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8513013435767749643, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: m_Name
       value: CaballeroIdel
@@ -9476,6 +9517,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5836566389864522159, guid: 66ab8bb9f214c3546961988854c67272, type: 3}
   m_PrefabInstance: {fileID: 5846366222660533731}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5977680412452992647
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2661155056781279477, guid: 2b86d0db4ada1c44da3e159092be11b1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -80.68865
+      objectReference: {fileID: 0}
+    - target: {fileID: 2661155056781279477, guid: 2b86d0db4ada1c44da3e159092be11b1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.4324999
+      objectReference: {fileID: 0}
+    - target: {fileID: 2661155056781279477, guid: 2b86d0db4ada1c44da3e159092be11b1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.2590213
+      objectReference: {fileID: 0}
+    - target: {fileID: 2661155056781279477, guid: 2b86d0db4ada1c44da3e159092be11b1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 2661155056781279477, guid: 2b86d0db4ada1c44da3e159092be11b1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2661155056781279477, guid: 2b86d0db4ada1c44da3e159092be11b1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2661155056781279477, guid: 2b86d0db4ada1c44da3e159092be11b1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2661155056781279477, guid: 2b86d0db4ada1c44da3e159092be11b1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2661155056781279477, guid: 2b86d0db4ada1c44da3e159092be11b1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2661155056781279477, guid: 2b86d0db4ada1c44da3e159092be11b1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3433294052640856655, guid: 2b86d0db4ada1c44da3e159092be11b1, type: 3}
+      propertyPath: m_Name
+      value: Pocion_completa
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2b86d0db4ada1c44da3e159092be11b1, type: 3}
 --- !u!1001 &6127175467126069233
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10671,6 +10769,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bat
       objectReference: {fileID: 0}
+    - target: {fileID: 2899505699446983198, guid: 877104ef0b32d41468121891b767883b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3182120744719208808, guid: 877104ef0b32d41468121891b767883b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 65.4
@@ -10711,9 +10813,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5661682314745669041, guid: 877104ef0b32d41468121891b767883b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5775228022797011336, guid: 877104ef0b32d41468121891b767883b, type: 3}
       propertyPath: player
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6939617363044637527, guid: 877104ef0b32d41468121891b767883b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6939617363044637527, guid: 877104ef0b32d41468121891b767883b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9124389322162648416, guid: 877104ef0b32d41468121891b767883b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9124389322162648416, guid: 877104ef0b32d41468121891b767883b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11858,3 +11980,4 @@ SceneRoots:
   - {fileID: 910151564988204904}
   - {fileID: 1225577417}
   - {fileID: 2061375925}
+  - {fileID: 5977680412452992647}

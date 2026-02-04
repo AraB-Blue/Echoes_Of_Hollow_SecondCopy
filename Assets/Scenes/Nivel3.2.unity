@@ -15,18 +15,18 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 0
-  m_FogColor: {r: 0.8470589, g: 0.8431373, b: 0.9333334, a: 1}
-  m_FogMode: 1
+  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogMode: 3
   m_FogDensity: 0.01
-  m_LinearFogStart: 40
-  m_LinearFogEnd: 200
+  m_LinearFogStart: 0
+  m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.44705886, g: 0.36862746, b: 0.6117647, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 8e7813a63b8d2e340814fcdcfe48ec12, type: 2}
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -452,8 +452,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 1709478344}
     m_Modifications:
     - target: {fileID: 4744794304455482949, guid: d908d3e037457be48a75fe3ef35f45a7, type: 3}
+      propertyPath: maxHealth
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4744794304455482949, guid: d908d3e037457be48a75fe3ef35f45a7, type: 3}
       propertyPath: damageAmount
-      value: 25
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8513013435767749643, guid: d908d3e037457be48a75fe3ef35f45a7, type: 3}
       propertyPath: m_Name
@@ -527,15 +531,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1709478344}
     m_Modifications:
+    - target: {fileID: 7662165134317207756, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
+      propertyPath: maxHealth
+      value: 110
+      objectReference: {fileID: 0}
     - target: {fileID: 8513013435767749643, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: m_Name
       value: CaballeroIdel
       objectReference: {fileID: 0}
     - target: {fileID: 9038614712322893489, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 31.84
+      value: 3.040001
       objectReference: {fileID: 0}
     - target: {fileID: 9038614712322893489, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -543,7 +551,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9038614712322893489, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 531.27
+      value: -4.5299683
       objectReference: {fileID: 0}
     - target: {fileID: 9038614712322893489, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -578,6 +586,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
+--- !u!4 &323882625 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9038614712322893489, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
+  m_PrefabInstance: {fileID: 323882624}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &331989320
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -837,7 +850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efed85fc15ce98d4fa7d59dd4f900deb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthPotionSpawner
-  healthPotionPrefab: {fileID: 4460168364500459254, guid: 307e74a8c08006c44a34cec90607b12d, type: 3}
+  healthPotionPrefab: {fileID: 3433294052640856655, guid: 2b86d0db4ada1c44da3e159092be11b1, type: 3}
   spawnPosition: {fileID: 1981932313}
   spawnOnAllEnemiesDead: 1
   useCustomRotation: 1
@@ -1771,8 +1784,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 1709478344}
     m_Modifications:
     - target: {fileID: 7662165134317207756, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
+      propertyPath: maxHealth
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662165134317207756, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: damageAmount
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8513013435767749643, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: m_Name
@@ -1899,8 +1916,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 1709478344}
     m_Modifications:
     - target: {fileID: 7662165134317207756, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
+      propertyPath: maxHealth
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662165134317207756, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: damageAmount
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8513013435767749643, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: m_Name
@@ -2242,15 +2263,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1709478344}
     m_Modifications:
+    - target: {fileID: 7662165134317207756, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
+      propertyPath: maxHealth
+      value: 110
+      objectReference: {fileID: 0}
     - target: {fileID: 8513013435767749643, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: m_Name
       value: CaballeroIdel (1)
       objectReference: {fileID: 0}
     - target: {fileID: 9038614712322893489, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.37
+      value: -1.4299984
       objectReference: {fileID: 0}
     - target: {fileID: 9038614712322893489, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2258,7 +2283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9038614712322893489, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 531.33
+      value: -4.4699707
       objectReference: {fileID: 0}
     - target: {fileID: 9038614712322893489, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2293,6 +2318,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
+--- !u!4 &1598268831 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9038614712322893489, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
+  m_PrefabInstance: {fileID: 1598268830}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1709478343
 GameObject:
   m_ObjectHideFlags: 0
@@ -2325,6 +2355,8 @@ Transform:
   - {fileID: 318180950}
   - {fileID: 1413727846}
   - {fileID: 1286128836}
+  - {fileID: 323882625}
+  - {fileID: 1598268831}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1728274536
@@ -2699,12 +2731,14 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   musicaNivel: {fileID: 8300000, guid: 95e846602854347428e89e5bb4ba7729, type: 3}
   musicaJefe: {fileID: 8300000, guid: ad3fe54a0a9d29544bf1c887c739f6a0, type: 3}
+  musicaMenu: {fileID: 0}
   escenasNivel:
   - Nivel3Inicio
   - Nivel3.1
   - Nivel3.2
   escenasJefe:
   - Nivel3Boss
+  escenasMenu: []
 --- !u!82 &1836075351
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3350,5 +3384,3 @@ SceneRoots:
   - {fileID: 508360993}
   - {fileID: 331989320}
   - {fileID: 1580609146}
-  - {fileID: 323882624}
-  - {fileID: 1598268830}

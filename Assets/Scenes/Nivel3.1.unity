@@ -428,7 +428,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5775228022797011336, guid: 877104ef0b32d41468121891b767883b, type: 3}
       propertyPath: maxHealth
-      value: 40
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5775228022797011336, guid: 877104ef0b32d41468121891b767883b, type: 3}
+      propertyPath: sightRange
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5775228022797011336, guid: 877104ef0b32d41468121891b767883b, type: 3}
       propertyPath: damageAmount
@@ -2021,12 +2025,14 @@ MonoBehaviour:
   audioSource: {fileID: 1177527266}
   musicaNivel: {fileID: 8300000, guid: 95e846602854347428e89e5bb4ba7729, type: 3}
   musicaJefe: {fileID: 8300000, guid: ad3fe54a0a9d29544bf1c887c739f6a0, type: 3}
+  musicaMenu: {fileID: 0}
   escenasNivel:
   - Nivel3Inicio
   - Nivel3.1
   - Nivel3.2
   escenasJefe:
   - Nivel3Boss
+  escenasMenu: []
 --- !u!82 &1177527266
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3564,7 +3570,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1556391313456030773, guid: 483398fff3496ae40bf97e1cfdaba40f, type: 3}
       propertyPath: maxHealth
-      value: 150
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556391313456030773, guid: 483398fff3496ae40bf97e1cfdaba40f, type: 3}
+      propertyPath: sightRange
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1556391313456030773, guid: 483398fff3496ae40bf97e1cfdaba40f, type: 3}
       propertyPath: damageAmount
@@ -3630,23 +3640,31 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2136829349}
     m_Modifications:
     - target: {fileID: 2838104878928333778, guid: 877104ef0b32d41468121891b767883b, type: 3}
       propertyPath: m_Name
       value: bat
       objectReference: {fileID: 0}
     - target: {fileID: 3182120744719208808, guid: 877104ef0b32d41468121891b767883b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.1591002
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182120744719208808, guid: 877104ef0b32d41468121891b767883b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.1591002
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182120744719208808, guid: 877104ef0b32d41468121891b767883b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 37.85932
+      value: 8.770212
       objectReference: {fileID: 0}
     - target: {fileID: 3182120744719208808, guid: 877104ef0b32d41468121891b767883b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.99999905
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 3182120744719208808, guid: 877104ef0b32d41468121891b767883b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 472.77298
+      value: -5.9270325
       objectReference: {fileID: 0}
     - target: {fileID: 3182120744719208808, guid: 877104ef0b32d41468121891b767883b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3678,13 +3696,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5775228022797011336, guid: 877104ef0b32d41468121891b767883b, type: 3}
       propertyPath: maxHealth
-      value: 40
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5775228022797011336, guid: 877104ef0b32d41468121891b767883b, type: 3}
+      propertyPath: sightRange
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 877104ef0b32d41468121891b767883b, type: 3}
+--- !u!4 &1989934668 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3182120744719208808, guid: 877104ef0b32d41468121891b767883b, type: 3}
+  m_PrefabInstance: {fileID: 1989934667}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1999118725
 GameObject:
   m_ObjectHideFlags: 0
@@ -5704,7 +5731,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5775228022797011336, guid: 877104ef0b32d41468121891b767883b, type: 3}
       propertyPath: maxHealth
-      value: 40
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5775228022797011336, guid: 877104ef0b32d41468121891b767883b, type: 3}
+      propertyPath: sightRange
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5775228022797011336, guid: 877104ef0b32d41468121891b767883b, type: 3}
       propertyPath: damageAmount
@@ -5814,6 +5845,7 @@ Transform:
   - {fileID: 1927600852}
   - {fileID: 208535695}
   - {fileID: 2088675553}
+  - {fileID: 1989934668}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2141105890
@@ -5897,4 +5929,3 @@ SceneRoots:
   - {fileID: 1019485560}
   - {fileID: 799341718}
   - {fileID: 813785530}
-  - {fileID: 1989934667}
