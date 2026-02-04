@@ -689,7 +689,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2a77332397102cf41be89afe24cfd0cb, type: 3}
   attackSoundVolume: 0.8
   deathSound: {fileID: 8300000, guid: 54897979df1c3ac4fb6785db48add972, type: 3}
-  deathSoundVolume: 0.569
+  deathSoundVolume: 0.512
   agent: {fileID: 1870949059241869318}
   player: {fileID: 0}
   whatIsGround:
