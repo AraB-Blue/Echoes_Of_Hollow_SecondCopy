@@ -133,20 +133,20 @@ public class Enemy : MonoBehaviour, IDamageable
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
-            Debug.Log($"AudioSource creado automáticamente en {gameObject.name}");
+            //Debug.Log($"AudioSource creado automáticamente en {gameObject.name}");
         }
 
         // Configurar propiedades para audio 3D espacial
         audioSource.playOnAwake = false;
-        audioSource.spatialBlend = 1f; // 1 = completamente 3D, 0 = completamente 2D
+        audioSource.spatialBlend = 1f; 
         audioSource.minDistance = audioMinDistance;
         audioSource.maxDistance = audioMaxDistance;
         audioSource.rolloffMode = AudioRolloffMode.Linear;
-        audioSource.dopplerLevel = 0f; // Desactivar efecto doppler (opcional)
+        audioSource.dopplerLevel = 0f; // Desactivar efecto doppler
 
         // Configuración adicional recomendada
         audioSource.loop = false;
-        audioSource.priority = 128; // Prioridad media (0 = más alta, 256 = más baja)
+        audioSource.priority = 128; // 
     }
 
     void Start()
@@ -308,7 +308,7 @@ public class Enemy : MonoBehaviour, IDamageable
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(damageAmount);
-                Debug.Log("¡Ataca! Daño aplicado: " + damageAmount);
+                //Debug.Log("¡Ataca! Daño aplicado: " + damageAmount);
             }
         }
 

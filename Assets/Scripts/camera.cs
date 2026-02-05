@@ -55,13 +55,13 @@ public class IsoCameraFollow : MonoBehaviour
         {
             seguimientoActivo = true;
             FindPlayer();
-            Debug.Log($"[IsoCameraFollow] Seguimiento activado en escena: {escenaActual}");
+            //Debug.Log("[IsoCameraFollow] Seguimiento activado en escena: {escenaActual}");
         }
         else
         {
             // Limpiar el target si estamos antes de la escena de activación
             target = null;
-            Debug.Log($"[IsoCameraFollow] Seguimiento desactivado en escena: {escenaActual}");
+            //Debug.Log("[IsoCameraFollow] Seguimiento desactivado en escena: {escenaActual}");
         }
     }
 
@@ -71,11 +71,11 @@ public class IsoCameraFollow : MonoBehaviour
         if (player != null)
         {
             target = player.transform;
-            Debug.Log($"[IsoCameraFollow] Jugador encontrado: {player.name}");
+            //Debug.Log("[IsoCameraFollow] Jugador encontrado: {player.name}");
         }
         else
         {
-            Debug.LogWarning("[IsoCameraFollow] No se encontró ningún objeto con tag 'Player'");
+            //Debug.LogWarning("[IsoCameraFollow] No se encontró ningún objeto con tag 'Player'");
         }
     }
 

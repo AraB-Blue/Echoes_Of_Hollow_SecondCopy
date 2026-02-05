@@ -24,19 +24,76 @@ public class PlayerAttack : MonoBehaviour
     [Range(0f, 1f)]
     public float damagePoint = 0.5f;
 
+    [Header("Sistema de Audio")]
+    [Tooltip("Déjalo vacío, se obtiene del PlayerMovement automáticamente")]
+    public AudioSource audioSource;
+
+    [Header("Sonidos de Ataque")]
+    [Tooltip("Sonidos de swing/corte de espada (se reproduce al inicio del ataque)")]
+    public AudioClip[] attackSwingSounds;
+
+    [Tooltip("Sonidos de impacto cuando golpeas a un enemigo")]
+    public AudioClip[] attackHitSounds;
+
+    [Tooltip("Sonido especial para el ataque final del combo")]
+    public AudioClip ultimateAttackSound;
+
+    [Header("Configuración de Volumen")]
+    [Tooltip("Volumen del sonido de swing (0-1)")]
+    [Range(0f, 1f)]
+    public float swingVolume = 0.5f;
+
+    [Tooltip("Volumen del sonido de impacto (0-1)")]
+    [Range(0f, 1f)]
+    public float hitVolume = 0.7f;
+
+    [Tooltip("Volumen del ataque final (0-1)")]
+    [Range(0f, 1f)]
+    public float ultimateVolume = 0.9f;
+
     private int comboIndex = 0;
     private bool isAttacking = false;
     private float lastAttackTime;
     private PlayerMovement movement;
     private Animator animator;
-    
+
 
     void Start()
     {
         movement = GetComponent<PlayerMovement>();
         animator = movement.GetAnimator();
-        
+
         if (attackOrigin == null) attackOrigin = transform;
+
+        // Obtener AudioSource del PlayerMovement si no está asignado
+        SetupAudioSource();
+    }
+
+    /// <summary>
+    /// Configura el AudioSource automáticamente desde PlayerMovement
+    /// </summary>
+    private void SetupAudioSource()
+    {
+        if (audioSource == null && movement != null)
+        {
+            // Intentar obtener el AudioSource del componente PlayerMovement
+            audioSource = movement.audioSource;
+
+            if (audioSource == null)
+            {
+                // Si tampoco está en PlayerMovement, buscar en el GameObject
+                audioSource = GetComponent<AudioSource>();
+            }
+
+            if (audioSource != null)
+            {
+                Debug.Log($"AudioSource encontrado para ataques en {gameObject.name}");
+            }
+            else
+            {
+                Debug.LogWarning($"No se encontró AudioSource en {gameObject.name}. Los sonidos de ataque no se reproducirán.");
+            }
+        }
     }
 
     void Update()
@@ -67,6 +124,9 @@ public class PlayerAttack : MonoBehaviour
         // Bloquear movimiento durante el ataque (opcional)
         if (movement != null)
             movement.canMove = false;
+
+        // Reproducir sonido de swing al inicio del ataque
+        PlayAttackSwingSound();
 
         // Activar animación de ataque
         if (animator != null)
@@ -120,6 +180,8 @@ public class PlayerAttack : MonoBehaviour
             Debug.LogWarning("[PlayerAttack] No se detectaron colliders. Revisa enemyLayer, colliders y que estén activos.");
         }
 
+        bool hitSomething = false;
+
         foreach (Collider col in hitColliders)
         {
             // Ignorar cualquier collider que pertenezca al mismo root que el jugador (por ejemplo colliders del propio jugador)
@@ -140,6 +202,7 @@ public class PlayerAttack : MonoBehaviour
                 {
                     damageable.TakeDamage(attack.damage);
                     Debug.Log($"Golpeó a {col.name} con {attack.nombre} (daño={attack.damage}, angle={angleToTarget:F1})");
+                    hitSomething = true;
                 }
                 else
                 {
@@ -150,6 +213,12 @@ public class PlayerAttack : MonoBehaviour
             {
                 Debug.Log($"[PlayerAttack] '{col.name}' fuera de ángulo (angle={angleToTarget:F1}, requerido<={attack.angle / 2f})");
             }
+        }
+
+        // Reproducir sonido de impacto si golpeaste algo
+        if (hitSomething)
+        {
+            PlayAttackHitSound();
         }
     }
 
@@ -162,6 +231,63 @@ public class PlayerAttack : MonoBehaviour
         if (d != null) return d;
         d = col.GetComponentInChildren<IDamageable>();
         return d;
+    }
+
+    // MÉTODOS DE AUDIO
+
+    /// <summary>
+    /// Reproduce el sonido de swing del ataque
+    /// </summary>
+    private void PlayAttackSwingSound()
+    {
+        if (audioSource == null) return;
+
+        // Si es el último ataque del combo y tiene sonido especial
+        bool isUltimateAttack = (comboIndex == comboList.Count - 1);
+
+        if (isUltimateAttack && ultimateAttackSound != null)
+        {
+            audioSource.PlayOneShot(ultimateAttackSound, ultimateVolume);
+            return;
+        }
+
+        // Sonido normal de swing
+        if (attackSwingSounds != null && attackSwingSounds.Length > 0)
+        {
+            AudioClip randomSwing = attackSwingSounds[Random.Range(0, attackSwingSounds.Length)];
+            if (randomSwing != null)
+            {
+                audioSource.PlayOneShot(randomSwing, swingVolume);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Reproduce el sonido de impacto cuando golpeas a un enemigo
+    /// </summary>
+    private void PlayAttackHitSound()
+    {
+        if (audioSource == null) return;
+
+        if (attackHitSounds != null && attackHitSounds.Length > 0)
+        {
+            AudioClip randomHit = attackHitSounds[Random.Range(0, attackHitSounds.Length)];
+            if (randomHit != null)
+            {
+                audioSource.PlayOneShot(randomHit, hitVolume);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Reproduce un sonido personalizado de ataque (para uso externo)
+    /// </summary>
+    public void PlayCustomAttackSound(AudioClip clip, float volume = 1f)
+    {
+        if (clip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(clip, volume);
+        }
     }
 
     void OnDrawGizmosSelected()

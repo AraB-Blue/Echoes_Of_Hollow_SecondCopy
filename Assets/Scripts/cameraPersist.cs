@@ -91,7 +91,7 @@ public class CameraPersist : MonoBehaviour
         {
             vcam.Follow = null;
         }
-        Debug.Log("[CameraPersist] Cámara reseteada");
+        //Debug.Log("[CameraPersist] Cámara reseteada");
     }
 
     void AsignarJugador()
@@ -101,7 +101,7 @@ public class CameraPersist : MonoBehaviour
         if (player != null && vcam != null)
         {
             vcam.Follow = player.transform;
-            Debug.Log("[CameraPersist] Siguiendo al jugador");
+            //Debug.Log("[CameraPersist] Siguiendo al jugador");
         }
         else
         {
