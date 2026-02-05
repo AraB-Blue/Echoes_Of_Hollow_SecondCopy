@@ -59,6 +59,9 @@ public class Enemy : MonoBehaviour, IDamageable
     private float nextPatrolSoundTime;
     private bool isPatrolling;
 
+    [Header("Flash al recibir ataque")]
+    private EnemyDamageFlash damageFlash;
+
     [Header("IA")]
     public NavMeshAgent agent;
     public Transform player;
@@ -116,6 +119,8 @@ public class Enemy : MonoBehaviour, IDamageable
 
         // Configurar AudioSource automáticamente
         SetupAudioSource();
+
+        damageFlash = GetComponent<EnemyDamageFlash>();
     }
 
     /// <summary>
@@ -328,6 +333,11 @@ public class Enemy : MonoBehaviour, IDamageable
         healthBar.UpdateHealthBar (currentHealth, maxHealth); 
         //Debug.Log(gameObject.name + " recibió " + amount + " de daño. Vida restante: " + currentHealth);
 
+        if (damageFlash !=null)
+        {
+            damageFlash.Flash();
+        }
+        
         if (currentHealth <= 0)
             Die();
     }

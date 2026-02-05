@@ -6383,9 +6383,33 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -3988220991844789130, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
+      propertyPath: hitVolume
+      value: 0.606
+      objectReference: {fileID: 0}
+    - target: {fileID: -3988220991844789130, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
       propertyPath: damagePoint
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -3988220991844789130, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
+      propertyPath: ultimateVolume
+      value: 0.743
+      objectReference: {fileID: 0}
+    - target: {fileID: -3988220991844789130, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
+      propertyPath: ultimateAttackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 7bd18a31245f785408155d160b739e11, type: 3}
+    - target: {fileID: -3988220991844789130, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
+      propertyPath: attackHitSounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3988220991844789130, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
+      propertyPath: attackSwingSounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3988220991844789130, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
+      propertyPath: 'attackHitSounds.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: bd8fc1b6c4033c5469b64cfa204cb56e, type: 3}
     - target: {fileID: -3988220991844789130, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
       propertyPath: comboList.Array.data[0].angle
       value: 50
@@ -6406,6 +6430,10 @@ PrefabInstance:
       propertyPath: comboList.Array.data[2].angle
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: -3988220991844789130, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
+      propertyPath: 'attackSwingSounds.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: c460bf170a1a6a148bb828cd800bee77, type: 3}
     - target: {fileID: 1850230740043205461, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
       propertyPath: m_DefaultActionMap
       value: 

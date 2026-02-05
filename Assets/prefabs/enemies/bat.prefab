@@ -613,6 +613,9 @@ PrefabInstance:
       addedObject: {fileID: 1938510453181558667}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1e658789032a51d49b0a61160f24f3ac, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 4364021246267765111}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1e658789032a51d49b0a61160f24f3ac, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 5775228022797011336}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1e658789032a51d49b0a61160f24f3ac, type: 3}
       insertIndex: -1
@@ -621,6 +624,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3831014135073300202}
   m_SourcePrefab: {fileID: 100100000, guid: 1e658789032a51d49b0a61160f24f3ac, type: 3}
+--- !u!137 &183430759672354200 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -6257683763682598117, guid: 1e658789032a51d49b0a61160f24f3ac, type: 3}
+  m_PrefabInstance: {fileID: 3144515880031794819}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2838104878928333778 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1e658789032a51d49b0a61160f24f3ac, type: 3}
@@ -648,6 +656,24 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4364021246267765111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2838104878928333778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08f6721dc833c70478da6ee5ff04bf01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDamageFlash
+  renderers:
+  - {fileID: 183430759672354200}
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  flashDuration: 0.1
+  useEmission: 1
+  emissionIntensity: 2
 --- !u!114 &5775228022797011336
 MonoBehaviour:
   m_ObjectHideFlags: 0
