@@ -709,6 +709,9 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6091bda8d91da9141b2e49d0b45b10e9, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 4466247100336412690}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6091bda8d91da9141b2e49d0b45b10e9, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 2308462208985255650}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6091bda8d91da9141b2e49d0b45b10e9, type: 3}
       insertIndex: -1
@@ -717,11 +720,34 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2405755026089461879}
   m_SourcePrefab: {fileID: 100100000, guid: 6091bda8d91da9141b2e49d0b45b10e9, type: 3}
+--- !u!137 &447421866307758225 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7163675338743506324, guid: 6091bda8d91da9141b2e49d0b45b10e9, type: 3}
+  m_PrefabInstance: {fileID: 1918547644413883133}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1612681445820501932 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6091bda8d91da9141b2e49d0b45b10e9, type: 3}
   m_PrefabInstance: {fileID: 1918547644413883133}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4466247100336412690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612681445820501932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08f6721dc833c70478da6ee5ff04bf01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDamageFlash
+  renderers:
+  - {fileID: 447421866307758225}
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  flashDuration: 0.1
+  useEmission: 0
+  emissionIntensity: 2
 --- !u!114 &2308462208985255650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -736,6 +762,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FinalBoss
   maxHealth: 200
   healthBar: {fileID: 0}
+  audioSource: {fileID: 0}
+  audioMinDistance: 5
+  audioMaxDistance: 25
+  patrolSounds:
+  - {fileID: 8300000, guid: d665e7e68f22f02469ce110770a98c6c, type: 3}
+  minPatrolSoundInterval: 4
+  maxPatrolSoundInterval: 10
+  patrolSoundVolume: 0.576
+  attack1Sounds:
+  - {fileID: 8300000, guid: 854524f800c7f6345a496a7e036f0a52, type: 3}
+  attack1SoundVolume: 0.583
+  attack2Sounds:
+  - {fileID: 8300000, guid: e4217415edb4c704483fb0d8752fbb01, type: 3}
+  attack2SoundVolume: 0.583
+  deathSound: {fileID: 8300000, guid: 20018e9533f28f944ba88daae921837a, type: 3}
+  deathSoundVolume: 0.882
   agent: {fileID: 1234770545824485424}
   player: {fileID: 0}
   whatIsGround:

@@ -1029,15 +1029,15 @@ MonoBehaviour:
   audioMinDistance: 5
   audioMaxDistance: 20
   patrolSounds:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 4c75417641000624caf36098b4fec129, type: 3}
   minPatrolSoundInterval: 3
   maxPatrolSoundInterval: 8
   patrolSoundVolume: 0.548
   attackSounds:
   - {fileID: 8300000, guid: e1dba585f17a97c4c8adc60d12234461, type: 3}
   attackSoundVolume: 0.906
-  deathSound: {fileID: 8300000, guid: 8ac29bbbd9eef5c49b7d18ccb495cb61, type: 3}
-  deathSoundVolume: 0.718
+  deathSound: {fileID: 8300000, guid: d02c6bb702ff2ed4f8f23224e0fca136, type: 3}
+  deathSoundVolume: 0.567
   agent: {fileID: 350199912336959985}
   player: {fileID: 0}
   whatIsGround:

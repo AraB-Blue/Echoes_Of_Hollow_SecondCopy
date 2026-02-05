@@ -229,6 +229,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private void Patroling()
     {
         isPatrolling = true;
+        agent.isStopped = false;
 
         if (!walkPointSet) SearchWalkPoint();
 
@@ -267,6 +268,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private void ChasePlayer()
     {
         isPatrolling = false;
+        agent.isStopped = false;
         agent.SetDestination(player.position);
 
         // Animación de movimiento basada en velocidad real

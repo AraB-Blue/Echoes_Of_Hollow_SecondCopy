@@ -12,13 +12,65 @@ public class FinalBoss : MonoBehaviour, IDamageable
 
     [SerializeField] FinalBossHealthBar healthBar;
 
+    [Header("Sistema de Audio")]
+    [Tooltip("Déjalo vacío, se creará automáticamente")]
+    public AudioSource audioSource;
+
+    [Header("Configuración de Audio 3D")]
+    [Tooltip("Distancia mínima donde el audio está a volumen máximo")]
+    public float audioMinDistance = 5f;
+
+    [Tooltip("Distancia máxima donde el audio deja de oírse")]
+    public float audioMaxDistance = 25f;
+
+    [Header("Sonidos de Patrulla")]
+    [Tooltip("Sonidos que se reproducen aleatoriamente durante la patrulla")]
+    public AudioClip[] patrolSounds;
+
+    [Tooltip("Tiempo mínimo entre sonidos de patrulla")]
+    public float minPatrolSoundInterval = 4f;
+
+    [Tooltip("Tiempo máximo entre sonidos de patrulla")]
+    public float maxPatrolSoundInterval = 10f;
+
+    [Tooltip("Volumen de los sonidos de patrulla (0-1)")]
+    [Range(0f, 1f)]
+    public float patrolSoundVolume = 0.6f;
+
+    [Header("Sonidos de Ataque 1")]
+    [Tooltip("Sonidos que se reproducen al usar ataque 1")]
+    public AudioClip[] attack1Sounds;
+
+    [Tooltip("Volumen de los sonidos de ataque 1 (0-1)")]
+    [Range(0f, 1f)]
+    public float attack1SoundVolume = 0.8f;
+
+    [Header("Sonidos de Ataque 2")]
+    [Tooltip("Sonidos que se reproducen al usar ataque 2")]
+    public AudioClip[] attack2Sounds;
+
+    [Tooltip("Volumen de los sonidos de ataque 2 (0-1)")]
+    [Range(0f, 1f)]
+    public float attack2SoundVolume = 1f;
+
+    [Header("Sonidos de Muerte")]
+    [Tooltip("Sonido que se reproduce al morir")]
+    public AudioClip deathSound;
+
+    [Tooltip("Volumen del sonido de muerte (0-1)")]
+    [Range(0f, 1f)]
+    public float deathSoundVolume = 1f;
+
+    private float nextPatrolSoundTime;
+    private bool isPatrolling;
+
     [Header("IA")]
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround;
     public LayerMask whatIsPlayer;
 
-    // Patrulla (similar a Enemy)
+    // Patrulla 
     public Vector3 walkPoint;
     private bool walkPointSet;
     public float walkPointRange = 15f;
@@ -42,7 +94,6 @@ public class FinalBoss : MonoBehaviour, IDamageable
     public int attack1Probability = 70;
 
     public bool isAttacking;
-
 
     //estados
     public float sightRange = 10f;
@@ -70,13 +121,47 @@ public class FinalBoss : MonoBehaviour, IDamageable
 
         animator = GetComponent<Animator>();
 
-        healthBar = GetComponentInChildren <FinalBossHealthBar>();
+        healthBar = GetComponentInChildren<FinalBossHealthBar>();
+
+        // Configurar AudioSource automáticamente
+        SetupAudioSource();
+    }
+
+   
+    private void SetupAudioSource()
+    {
+        // Si no hay referencia, intentar obtener componente existente
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
+        // Si aún no existe, crear uno nuevo
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        // Configurar propiedades para audio 3D espacial
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 1f;
+        audioSource.minDistance = audioMinDistance;
+        audioSource.maxDistance = audioMaxDistance;
+        audioSource.rolloffMode = AudioRolloffMode.Linear;
+        audioSource.dopplerLevel = 0f;
+
+        // Configuración adicional recomendada
+        audioSource.loop = false;
+        audioSource.priority = 64; // Prioridad más alta para el boss
     }
 
     private void Start()
     {
         currentHealth = maxHealth;
-        healthBar.UpdateHealthBar (currentHealth, maxHealth);
+        healthBar.UpdateHealthBar(currentHealth, maxHealth);
+
+        // Inicializar timer de sonido de patrulla
+        nextPatrolSoundTime = Time.time + Random.Range(minPatrolSoundInterval, maxPatrolSoundInterval);
     }
 
     private void Update()
@@ -105,9 +190,12 @@ public class FinalBoss : MonoBehaviour, IDamageable
         }
     }
 
-    // PATRULLA (copiado de Enemy)
+    // PATRULLA 
     private void Patroling()
     {
+        agent.isStopped = false;
+        isPatrolling = true;
+
         if (!walkPointSet) SearchWalkPoint();
 
         if (walkPointSet)
@@ -124,6 +212,9 @@ public class FinalBoss : MonoBehaviour, IDamageable
         // Animación de movimiento basada en velocidad real
         float normalizedSpeed = agent.velocity.magnitude / agent.speed;
         UpdateAnimator(normalizedSpeed);
+
+        // Reproducir sonidos de patrulla aleatoriamente
+        PlayPatrolSound();
     }
 
     private void SearchWalkPoint()
@@ -143,11 +234,11 @@ public class FinalBoss : MonoBehaviour, IDamageable
         animator.SetFloat("Speed", Speed);
     }
 
-
     //Seguir al jugador
     private void ChasePlayer()
     {
         agent.isStopped = false;
+        isPatrolling = false;
         agent.SetDestination(player.position);
         float currentSpeed = agent.velocity.magnitude;
         UpdateAnimator(currentSpeed);
@@ -157,6 +248,7 @@ public class FinalBoss : MonoBehaviour, IDamageable
     {
         // El boss se detiene para atacar
         agent.isStopped = true;
+        isPatrolling = false;
         UpdateAnimator(0f);
 
         // Mira al jugador
@@ -206,6 +298,9 @@ public class FinalBoss : MonoBehaviour, IDamageable
             animator.SetBool("Attack1", true);
         }
 
+        // Reproducir sonido de ataque 1
+        PlayAttack1Sound();
+
         yield return new WaitForSeconds(attack1Delay);
 
         if (player != null && Vector3.Distance(transform.position, player.position) <= attack1Range)
@@ -234,6 +329,9 @@ public class FinalBoss : MonoBehaviour, IDamageable
             animator.SetBool("Attack2", true);
         }
 
+        // Reproducir sonido de ataque 2
+        PlayAttack2Sound();
+
         yield return new WaitForSeconds(attack2Delay);
 
         if (player != null && Vector3.Distance(transform.position, player.position) <= attack2Range)
@@ -252,21 +350,17 @@ public class FinalBoss : MonoBehaviour, IDamageable
         }
     }
 
-
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
-        //Debug.Log(gameObject.name + " recibio " + amount + " de daño. Vida restante: " + currentHealth);
 
-        healthBar.UpdateHealthBar (currentHealth, maxHealth);
-        
+        healthBar.UpdateHealthBar(currentHealth, maxHealth);
+
         if (currentHealth <= 0)
             Die();
     }
 
-
     //muerte
-
     private void Die()
     {
         if (isDead) return;
@@ -274,6 +368,9 @@ public class FinalBoss : MonoBehaviour, IDamageable
 
         agent.enabled = false;
         GetComponent<Collider>().enabled = false;
+
+        // Reproducir sonido de muerte
+        PlayDeathSound();
 
         StartCoroutine(DyingCoroutine());
     }
@@ -285,7 +382,14 @@ public class FinalBoss : MonoBehaviour, IDamageable
             animator.SetBool("isDead", true);
         }
 
-        yield return new WaitForSeconds(timeBeforeDying);
+        // Esperar el tiempo de muerte o la duración del sonido, lo que sea mayor
+        float waitTime = timeBeforeDying;
+        if (deathSound != null)
+        {
+            waitTime = Mathf.Max(timeBeforeDying, deathSound.length);
+        }
+
+        yield return new WaitForSeconds(waitTime);
 
         CleanupPersistenObjects();
 
@@ -321,6 +425,82 @@ public class FinalBoss : MonoBehaviour, IDamageable
         Time.timeScale = 1f;
 
         Destroy(gameObject);
+    }
+
+    // MÉTODOS DE AUDIO
+
+    private void PlayPatrolSound()
+    {
+        if (patrolSounds == null || patrolSounds.Length == 0)
+            return;
+
+        if (audioSource == null)
+        {
+            Debug.LogWarning($"AudioSource no encontrado en {gameObject.name}");
+            return;
+        }
+
+        if (Time.time >= nextPatrolSoundTime && !audioSource.isPlaying)
+        {
+            // Seleccionar un sonido aleatorio
+            AudioClip randomClip = patrolSounds[Random.Range(0, patrolSounds.Length)];
+
+            if (randomClip != null)
+            {
+                audioSource.PlayOneShot(randomClip, patrolSoundVolume);
+            }
+
+            // Establecer el próximo tiempo de reproducción
+            nextPatrolSoundTime = Time.time + Random.Range(minPatrolSoundInterval, maxPatrolSoundInterval);
+        }
+    }
+
+    private void PlayAttack1Sound()
+    {
+        if (attack1Sounds == null || attack1Sounds.Length == 0)
+            return;
+
+        if (audioSource == null)
+        {
+            Debug.LogWarning($"AudioSource no encontrado en {gameObject.name}");
+            return;
+        }
+
+        // Seleccionar un sonido aleatorio
+        AudioClip randomClip = attack1Sounds[Random.Range(0, attack1Sounds.Length)];
+
+        if (randomClip != null)
+        {
+            audioSource.PlayOneShot(randomClip, attack1SoundVolume);
+        }
+    }
+    private void PlayAttack2Sound()
+    {
+        if (attack2Sounds == null || attack2Sounds.Length == 0)
+            return;
+
+        if (audioSource == null)
+        {
+            Debug.LogWarning($"AudioSource no encontrado en {gameObject.name}");
+            return;
+        }
+
+        // Seleccionar un sonido aleatorio
+        AudioClip randomClip = attack2Sounds[Random.Range(0, attack2Sounds.Length)];
+
+        if (randomClip != null)
+        {
+            audioSource.PlayOneShot(randomClip, attack2SoundVolume);
+        }
+    }
+
+ 
+    private void PlayDeathSound()
+    {
+        if (deathSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(deathSound, deathSoundVolume);
+        }
     }
 
     // Visualizar rangos en el editor
