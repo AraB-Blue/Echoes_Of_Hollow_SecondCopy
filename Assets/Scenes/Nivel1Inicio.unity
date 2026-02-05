@@ -343,7 +343,7 @@ MonoBehaviour:
   useCustomRotation: 1
   spawnRotation: {x: -90, y: 0, z: 0}
   spawnSound: {fileID: 8300000, guid: d8bc4bc94735ac04d9b62daf40352986, type: 3}
-  soundVolume: 0.46
+  soundVolume: 0.3
 --- !u!4 &2312376
 Transform:
   m_ObjectHideFlags: 0
@@ -6360,7 +6360,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -9020295309892371198, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
       propertyPath: dashVolume
-      value: 0.466
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: -9020295309892371198, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
+      propertyPath: footstepVolume
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: -9020295309892371198, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
       propertyPath: footstepSounds.Array.size
@@ -6369,10 +6373,14 @@ PrefabInstance:
     - target: {fileID: -9020295309892371198, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
       propertyPath: 'footstepSounds.Array.data[0]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: ad8ddf4a02612cb48a41bded30412b01, type: 3}
     - target: {fileID: -9015068739686460194, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
       propertyPath: currentHealth
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -9015068739686460194, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
+      propertyPath: timeBeforeMenu
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -3988220991844789130, guid: 1159114ef6a851845afd6dc5b08e2567, type: 3}
       propertyPath: damagePoint
