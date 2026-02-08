@@ -724,7 +724,7 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  walkPoint: {x: 5, y: 5, z: 0}
+  walkPoint: {x: 5, y: 5, z: 5}
   walkPointRange: 6
   timeBetweenAttacks: 4.6
   damageAmount: 30

@@ -3742,6 +3742,10 @@ PrefabInstance:
       value: Nivel2Poblado
       objectReference: {fileID: 0}
     - target: {fileID: 3911430459128020378, guid: a34e71081e5fd194d8b072c27e42141a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3911430459128020378, guid: a34e71081e5fd194d8b072c27e42141a, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.47
       objectReference: {fileID: 0}
