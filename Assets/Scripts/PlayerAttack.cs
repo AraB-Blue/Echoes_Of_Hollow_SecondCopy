@@ -121,10 +121,6 @@ public class PlayerAttack : MonoBehaviour
         ComboAttack currentAttack = comboList[comboIndex];
         Debug.Log($"Ataque {comboIndex + 1}: {currentAttack.nombre} | Daño {currentAttack.damage}");
 
-        // Bloquear movimiento durante el ataque (opcional)
-        if (movement != null)
-            movement.canMove = false;
-
         // Reproducir sonido de swing al inicio del ataque
         PlayAttackSwingSound();
 
