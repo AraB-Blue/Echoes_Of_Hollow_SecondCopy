@@ -19,6 +19,11 @@ public class EnemyHealthBar : MonoBehaviour
    {
     slider.value = currentValue / maxValue;
 
+    if (currentValue <= 0)
+        {
+            slider.gameObject.SetActive(false);
+        }
+
    }
 
     
