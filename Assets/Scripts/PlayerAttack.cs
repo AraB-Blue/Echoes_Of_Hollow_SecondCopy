@@ -124,10 +124,6 @@ public class PlayerAttack : MonoBehaviour
         // Reproducir sonido de swing al inicio del ataque
         PlayAttackSwingSound();
 
-        if (movement !=null)
-        {
-            movement.canMove = true;
-        }
 
         // Activar animación de ataque
         if (animator != null)
@@ -154,10 +150,7 @@ public class PlayerAttack : MonoBehaviour
         if (animator != null)
             animator.SetBool("IsAttacking", false);
 
-        // Permitir movimiento nuevamente
-        if (movement != null)
-            movement.canMove = true;
-
+ 
         comboIndex++;
         if (comboIndex >= comboList.Count) comboIndex = 0;
 
