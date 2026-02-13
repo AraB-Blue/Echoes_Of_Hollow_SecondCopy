@@ -537,6 +537,10 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 110
       objectReference: {fileID: 0}
+    - target: {fileID: 7662165134317207756, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
+      propertyPath: damageAmount
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8513013435767749643, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: m_Name
       value: CaballeroIdel
@@ -1791,7 +1795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7662165134317207756, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: damageAmount
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8513013435767749643, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: m_Name
@@ -1923,7 +1927,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7662165134317207756, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: damageAmount
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8513013435767749643, guid: 4ef598a5a5fc7364c94243e93b38da5c, type: 3}
       propertyPath: m_Name
